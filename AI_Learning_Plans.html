@@ -1,0 +1,1635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Developer Interview Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root {
+  --paper:      #FAF7F2;
+  --surface:    #FFFFFF;
+  --surface-2:  #F1EEE8;
+  --ink:        #15191E;
+  --ink-soft:   #3C4642;
+  --muted:      #6B7672;
+  --rule:       #DDD8CF;
+  --rule-soft:  #E8E4DC;
+  --accent:     #0B6E5F;
+  --accent-ink: #085043;
+  --accent-wash:#E4F0EC;
+  --flag:       #8E2F3C;
+  --flag-wash:  #F6E8E8;
+  --shadow:     0 1px 2px rgba(21,25,30,.05);
+
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0E1412;
+    --surface:    #151D1A;
+    --surface-2:  #1B2522;
+    --ink:        #E4E9E6;
+    --ink-soft:   #BCC6C2;
+    --muted:      #8A9793;
+    --rule:       #2A3632;
+    --rule-soft:  #222C29;
+    --accent:     #58CBAE;
+    --accent-ink: #8FE0CA;
+    --accent-wash:#13302A;
+    --flag:       #E29098;
+    --flag-wash:  #32191D;
+    --shadow:     0 1px 2px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0E1412;
+  --surface:    #151D1A;
+  --surface-2:  #1B2522;
+  --ink:        #E4E9E6;
+  --ink-soft:   #BCC6C2;
+  --muted:      #8A9793;
+  --rule:       #2A3632;
+  --rule-soft:  #222C29;
+  --accent:     #58CBAE;
+  --accent-ink: #8FE0CA;
+  --accent-wash:#13302A;
+  --flag:       #E29098;
+  --flag-wash:  #32191D;
+  --shadow:     0 1px 2px rgba(0,0,0,.3);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.62;
+  font-variant-numeric: oldstyle-nums;
+}
+img { max-width: 100%; }
+
+/* ---------- shell ---------- */
+.wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding-inline: 22px;
+  padding-block: 0 96px;
+}
+@media (max-width: 480px) { .wrap { padding-inline: 16px; } }
+
+/* ---------- sticky nav ---------- */
+.topbar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.topbar-inner {
+  max-width: 820px; margin: 0 auto;
+  padding-inline: 22px;
+  display: flex; align-items: center; gap: 14px;
+  min-height: 46px;
+}
+@media (max-width: 480px) { .topbar-inner { padding-inline: 16px; } }
+.navscroll {
+  display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
+  flex: 1; margin-inline: -4px; padding-inline: 4px;
+}
+.navscroll::-webkit-scrollbar { display: none; }
+.navscroll a {
+  font-family: var(--f-display); font-size: 11.5px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  padding: 5px 8px; border-radius: 4px; white-space: nowrap;
+}
+.navscroll a:hover { color: var(--accent); background: var(--accent-wash); }
+.navscroll a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.counter {
+  font-family: var(--f-mono); font-size: 11.5px; font-weight: 500;
+  color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.counter b { color: var(--accent); font-weight: 500; }
+
+/* ---------- masthead ---------- */
+.masthead { padding-block: 54px 36px; border-bottom: 2px solid var(--ink); }
+.eyebrow {
+  font-family: var(--f-display); font-size: 11.5px; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+  margin: 0 0 14px;
+}
+h1 {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(34px, 7vw, 52px); line-height: 1.04;
+  letter-spacing: -.022em; margin: 0 0 18px; text-wrap: balance;
+}
+.standfirst {
+  font-size: 20px; line-height: 1.5; color: var(--ink-soft);
+  margin: 0 0 28px; max-width: 34em;
+}
+.facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px 26px; padding-top: 6px;
+}
+.fact dt {
+  font-family: var(--f-display); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 3px;
+}
+.fact dd { margin: 0; font-family: var(--f-mono); font-size: 13.5px; line-height: 1.45; }
+
+/* ---------- typography ---------- */
+h2 {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(25px, 4.4vw, 32px); line-height: 1.14;
+  letter-spacing: -.016em; margin: 0 0 6px; text-wrap: balance;
+}
+h3 {
+  font-family: var(--f-display); font-weight: 600;
+  font-size: 18.5px; line-height: 1.26; letter-spacing: -.008em;
+  margin: 34px 0 10px; text-wrap: balance;
+}
+h4 {
+  font-family: var(--f-display); font-weight: 600; font-size: 12px;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+  margin: 26px 0 8px;
+}
+p { margin: 0 0 16px; max-width: 70ch; }
+a { color: var(--accent-ink); text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent); }
+strong { font-weight: 600; }
+em { font-style: italic; }
+code {
+  font-family: var(--f-mono); font-size: .86em;
+  background: var(--surface-2); padding: 1px 5px; border-radius: 3px;
+  font-variant-numeric: normal;
+}
+ul, ol { margin: 0 0 16px; padding-left: 1.25em; max-width: 70ch; }
+li { margin-bottom: 7px; }
+li::marker { color: var(--muted); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+/* ---------- section scaffolding ---------- */
+section { padding-block: 46px; border-bottom: 1px solid var(--rule); scroll-margin-top: 62px; }
+.sec-head { margin-bottom: 22px; }
+.sec-kicker {
+  display: flex; align-items: baseline; gap: 12px;
+  font-family: var(--f-display); font-size: 11.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 10px;
+}
+.sec-kicker .num {
+  font-family: var(--f-mono); font-size: 13px; font-weight: 500;
+  color: var(--accent); letter-spacing: 0;
+}
+.sec-kicker .when { margin-left: auto; letter-spacing: .05em; }
+.lede { font-size: 18.5px; color: var(--ink-soft); max-width: 60ch; margin-bottom: 4px; }
+
+/* ---------- phase progress ---------- */
+.meter { display: flex; align-items: center; gap: 10px; margin: 18px 0 22px; }
+.meter-track {
+  flex: 1; height: 3px; background: var(--rule); border-radius: 2px; overflow: hidden;
+}
+.meter-fill {
+  height: 100%; width: 0%; background: var(--accent);
+  transition: width .25s ease;
+}
+.meter-label {
+  font-family: var(--f-mono); font-size: 11px; color: var(--muted);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* ---------- tasks ---------- */
+.tasks { list-style: none; padding: 0; margin: 0 0 18px; max-width: 70ch; }
+.tasks li { margin: 0; border-bottom: 1px solid var(--rule-soft); }
+.tasks li:last-child { border-bottom: 0; }
+.task {
+  display: flex; gap: 11px; align-items: flex-start;
+  padding: 9px 2px; cursor: pointer; line-height: 1.5;
+}
+.task input {
+  appearance: none; -webkit-appearance: none;
+  flex: 0 0 auto; width: 15px; height: 15px; margin: 5px 0 0;
+  border: 1.5px solid var(--muted); border-radius: 3px;
+  background: var(--surface); cursor: pointer; position: relative;
+}
+.task input:checked { background: var(--accent); border-color: var(--accent); }
+.task input:checked::after {
+  content: ""; position: absolute; left: 4px; top: 1px;
+  width: 4px; height: 8px; border: solid var(--surface);
+  border-width: 0 1.8px 1.8px 0; transform: rotate(42deg);
+}
+.task input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.task input:checked ~ .task-body .task-text { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--rule); }
+.task-text { font-size: 16.5px; }
+.task-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.tref { font-family: var(--f-mono); font-size: 12.5px; line-height: 1.5; }
+.tref::before { content: "\21B3\00A0"; color: var(--muted); }
+.tref a {
+  color: var(--accent-ink); text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+}
+.tref a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.tref a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tref .sep { color: var(--rule); padding: 0 3px; }
+.task-text .tag {
+  font-family: var(--f-mono); font-size: 11px; color: var(--accent);
+  background: var(--accent-wash); padding: 1px 5px; border-radius: 3px;
+  margin-right: 7px; vertical-align: 1px;
+}
+
+/* ---------- callouts ---------- */
+.note {
+  border-left: 2px solid var(--accent); background: var(--accent-wash);
+  padding: 14px 16px; margin: 22px 0; border-radius: 0 4px 4px 0; max-width: 70ch;
+}
+.note p:last-child { margin-bottom: 0; }
+.note .label {
+  font-family: var(--f-display); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink);
+  display: block; margin-bottom: 5px;
+}
+.warn { border-left-color: var(--flag); background: var(--flag-wash); }
+.warn .label { color: var(--flag); }
+
+.ship {
+  border: 1px solid var(--rule); border-radius: 5px; background: var(--surface);
+  padding: 15px 17px; margin: 22px 0; max-width: 70ch; box-shadow: var(--shadow);
+}
+.ship .label {
+  font-family: var(--f-display); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 6px;
+}
+.ship p:last-child, .ship ul:last-child { margin-bottom: 0; }
+
+/* ---------- tables ---------- */
+.tablewrap { overflow-x: auto; margin: 20px 0; border-bottom: 1px solid var(--rule); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 460px; }
+th {
+  font-family: var(--f-display); font-size: 10.5px; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase; color: var(--muted);
+  text-align: left; padding: 0 14px 8px 0; border-bottom: 1px solid var(--ink);
+  vertical-align: bottom;
+}
+td { padding: 10px 14px 10px 0; border-bottom: 1px solid var(--rule-soft); vertical-align: top; line-height: 1.45; }
+tr:last-child td { border-bottom: 0; }
+th:last-child, td:last-child { padding-right: 0; }
+td.mono, th.mono { font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+td.w { color: var(--muted); white-space: nowrap; font-family: var(--f-mono); font-size: 12.5px; }
+
+/* ---------- reading lists ---------- */
+.reads { list-style: none; padding: 0; margin: 10px 0 20px; max-width: 70ch; }
+.reads > li {
+  padding: 10px 0 10px 13px; border-left: 2px solid var(--rule);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.reads > li:last-child { border-bottom: 0; }
+.reads > li.core { border-left-color: var(--accent); }
+.reads .r-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px; }
+.reads .r-title { font-weight: 600; font-size: 16.5px; }
+.reads .r-why { display: block; font-size: 15px; color: var(--muted); margin-top: 1px; line-height: 1.45; }
+.kind {
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .03em;
+  color: var(--muted); border: 1px solid var(--rule); border-radius: 3px;
+  padding: 0 5px; text-transform: lowercase; white-space: nowrap;
+  position: relative; top: -1px;
+}
+.kind.paid { color: var(--flag); border-color: color-mix(in srgb, var(--flag) 40%, transparent); }
+
+/* ---------- q bank ---------- */
+.qlist { counter-reset: q; list-style: none; padding: 0; max-width: 70ch; }
+.qlist li {
+  counter-increment: q; position: relative; padding-left: 34px; margin-bottom: 13px;
+}
+.qlist li::before {
+  content: "Q" counter(q); position: absolute; left: 0; top: 2px;
+  font-family: var(--f-mono); font-size: 11.5px; color: var(--accent);
+}
+.qlist .why { display: block; font-size: 14.5px; color: var(--muted); margin-top: 2px; }
+
+/* ---------- misc ---------- */
+.pill {
+  display: inline-block; font-family: var(--f-mono); font-size: 11.5px;
+  border: 1px solid var(--rule); border-radius: 100px; padding: 2px 9px;
+  color: var(--muted); margin: 0 5px 5px 0;
+}
+.closer { padding-block: 44px 0; border-bottom: 0; }
+.closer .nextline {
+  font-family: var(--f-display); font-size: 19px; font-weight: 600;
+  line-height: 1.4; max-width: 46em;
+}
+.footnote { font-size: 14px; color: var(--muted); max-width: 70ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <nav class="navscroll" aria-label="Sections">
+      <a href="#premise">Premise</a>
+      <a href="#shelf">Shelf</a>
+      <a href="#p0">0 · Floor</a>
+      <a href="#p1">1 · API</a>
+      <a href="#p2">2 · RAG</a>
+      <a href="#p3">3 · Agents</a>
+      <a href="#p4">4 · Evals</a>
+      <a href="#p5">5 · Prod</a>
+      <a href="#p6">6 · Your code</a>
+      <a href="#p7">7 · Interview</a>
+      <a href="#track-b">Industry</a>
+      <a href="#cadence">Cadence</a>
+      <a href="#traps">Traps</a>
+      <a href="#progress">Progress</a>
+    </nav>
+    <span class="counter" id="global-counter" aria-live="polite"><b>0</b>/0</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">12-Week Plan · Standalone</p>
+  <h1>Becoming an AI-fluent developer</h1>
+  <p class="standfirst">Enough depth to clear an AI-led interview for a product or backend role — and a standing habit that keeps you current after it.</p>
+  <dl class="facts">
+    <div class="fact"><dt>Start</dt><dd>Mon 5 Oct 2026</dd></div>
+    <div class="fact"><dt>End</dt><dd>Sun 27 Dec 2026</dd></div>
+    <div class="fact"><dt>Load</dt><dd>~1 hr/day · 6 days</dd></div>
+    <div class="fact"><dt>Target role</dt><dd>AI-fluent product / backend dev</dd></div>
+    <div class="fact"><dt>Starting point</dt><dd>Ships code with an assistant; no LLM API work yet</dd></div>
+    <div class="fact"><dt>Deliverable</dt><dd>One deployed app + its eval report</dd></div>
+    <div class="fact"><dt>Reading list</dt><dd>138 links, all checked live · 37 core · linked per concept</dd></div>
+  </dl>
+</header>
+
+<!-- ============ PREMISE ============ -->
+<section id="premise">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">§</span><span>The premise, with two corrections</span></div>
+    <h2>The interview doesn't test what you've read</h2>
+  </div>
+
+  <p class="lede">It tests whether you can build something useful on top of a component that is non-deterministic, expensive, and occasionally confidently wrong — and whether you can <em>prove</em> it works.</p>
+
+  <p><strong>Correction one.</strong> Most people prepare for this by consuming AI content: newsletters, launch threads, model benchmarks. That produces someone who can name things. The interview is looking for someone who has felt the actual problems — a retrieval step that returns plausible-but-wrong chunks, an agent that loops twelve times and burns $4, a prompt change that fixes one case and silently breaks nine. You only get those scars from building. So this plan is <strong>85% building, 15% reading</strong>, and the reading is structured so it feeds the building rather than replacing it.</p>
+
+  <p><strong>Correction two — this one is specific to you.</strong> You currently get code from an assistant. That is the correct way to work in 2026 and nobody will penalise it. But it creates one precise exposure: the interview tests what the assistant cannot do for you. Deciding <em>what</em> to build. Recognising when the output is wrong before you run it. Defending a line of code when someone asks "what happens if this is null?" Every phase below ends in something you have to explain, and the weekly cadence has a standing <strong>cold rep</strong> — a timed build with the assistant closed. Not because assistant-free coding is virtuous, but because the ability to read and judge generated code is downstream of having written that code yourself at least once.</p>
+
+  <div class="note">
+    <span class="label">What "AI-fluent" actually means to an interviewer</span>
+    <p>Not "has used ChatGPT." It means: you can take a product requirement, decide whether an LLM belongs in it at all, pick the cheapest architecture that meets the bar, put a number on quality, and say what happens when it fails. Five things. The whole plan is those five things.</p>
+  </div>
+
+  <h3>Language: Python — decided</h3>
+  <p>Every provider's SDK, every eval harness, every retrieval library, and nearly all the reference code you'll read is Python-first. You do not need to be strong at Python — you need to be able to read it fluently and write ~200-line services in it. That is a two-week ramp alongside Phase 0 and 1, not a prerequisite.</p>
+  <p>If your product surface is a web app, write the thin serving layer in TypeScript later — the SDKs mirror each other closely and the concepts transfer unchanged. Don't start there: the ecosystem you'll be reading is Python, and translating while learning doubles the cost.</p>
+  <p class="footnote"><strong>This decision is closed.</strong> Switching at Week 6 costs more than any difference between the two.</p>
+
+  <h3>Two tracks, running in parallel</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:17%">Track</th><th style="width:16%">Share</th><th>What it is</th><th style="width:22%">When</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A — Build</strong></td><td class="mono">~85%</td><td>Phases 0–7 below. A prerequisite chain, each phase adding exactly one new idea. All of it converges on one deployed project.</td><td class="w">Mon–Sat</td></tr>
+        <tr><td><strong>B — Current</strong></td><td class="mono">~15%</td><td>A 45-minute Sunday ritual that turns industry noise into three sentences you could say out loud in an interview.</td><td class="w">Sun</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Track B runs from Week 1, not Week 11. Industry literacy is a <em>sediment</em> — twelve weekly deposits, not one cram. And by Week 12 the log it produces is the single best answer you'll have to "so what's interesting in AI right now?"</p>
+
+  <h3>How to read the resource lists</h3>
+  <p>You should never have to go and search for where to learn something here. Every concept bullet carries its own <span class="tref" style="display:inline;font-size:13px">sources</span> underneath it — click straight through to the page that teaches that specific thing. Each phase then ends in a full <strong>Read</strong> list, which is the same links plus the depth that no single bullet owns.</p><p>Every link was fetched and confirmed live while this page was written — but the web rots, so treat a dead link as a prompt to search the title, not as a missing topic.</p>
+  <div class="note">
+    <span class="label">The marking</span>
+    <p>A <strong>green left bar</strong> means <strong>core</strong>: read it, it is part of the plan. Everything else is <strong>optional</strong> — depth for a topic that turns out to matter to you, or reference you consult mid-build rather than read front to back.</p>
+    <p>There are 37 core items across 12 weeks. That is roughly 15&ndash;20 minutes of reading a day, which is deliberate: the remaining 40 minutes are for building, and reading is the thing that expands to fill whatever time you give it.</p>
+  </div>
+</section>
+
+<!-- ============ SHELF ============ -->
+<section id="shelf">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">§</span><span>Cross-cutting</span><span class="when">All 12 weeks</span></div>
+    <h2>The shelf</h2>
+  </div>
+  <p class="lede">Not a phase. The Python ramp and the few long-form things worth owning, used throughout rather than read in one week.</p>
+
+  <h4>Reference and long-form</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a><span class="kind">docs</span></span>
+      <span class="r-why">Astral&#x27;s own docs; one binary replaces pip, venv, pyenv, poetry, pipx.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://huyenchip.com/books/" target="_blank" rel="noopener noreferrer">AI Engineering: Building Applications with Foundation Models</a><span class="kind paid">book</span></span>
+      <span class="r-why">Author&#x27;s own page; only book scoped to building on foundation models, not training them.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.astral.sh/ruff/" target="_blank" rel="noopener noreferrer">Ruff</a><span class="kind">docs</span></span>
+      <span class="r-why">Same vendor as uv; linter plus formatter replacing flake8, black, isort in one binary.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.python.org/3/tutorial/index.html" target="_blank" rel="noopener noreferrer">The Python Tutorial</a><span class="kind">docs</span></span>
+      <span class="r-why">Official, and states upfront it targets programmers new to Python, not new to programming.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.python.org/3/library/asyncio-task.html" target="_blank" rel="noopener noreferrer">Coroutines and Tasks</a><span class="kind">docs</span></span>
+      <span class="r-why">Primary source, and it steers you to TaskGroup over gather for parallel calls.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://fastapi.tiangolo.com/async/" target="_blank" rel="noopener noreferrer">Concurrency and async / await</a><span class="kind">docs</span></span>
+      <span class="r-why">Explains when async actually helps for IO-bound calls; the stdlib docs only give primitives.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html" target="_blank" rel="noopener noreferrer">Type hints cheat sheet</a><span class="kind">docs</span></span>
+      <span class="r-why">Every annotation pattern on one page, modern list[int] and X | None syntax.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.3blue1brown.com/lessons/gpt" target="_blank" rel="noopener noreferrer">Transformers, the tech behind LLMs</a><span class="kind">guide</span></span>
+      <span class="r-why">Written prose plus purpose-built visuals, framed on GPT decoders rather than translation.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer">Attention Is All You Need</a><span class="kind">paper</span></span>
+      <span class="r-why">Primary source everything cites; one sitting, then you never need it again.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/DataTalksClub/llm-zoomcamp" target="_blank" rel="noopener noreferrer">LLM Zoomcamp</a><span class="kind">course</span></span>
+      <span class="r-why">Active 2026 cohort; ships one RAG system through evaluation and monitoring.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/chiphuyen/aie-book" target="_blank" rel="noopener noreferrer">aie-book</a><span class="kind">docs</span></span>
+      <span class="r-why">Free chapter summaries and curated resource list; skim the syllabus before buying the book.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 0 ============ -->
+<section id="p0">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">00</span><span>Phase</span><span class="when">Week 1 · Oct 5–11</span></div>
+    <h2>The floor</h2>
+  </div>
+  <p class="lede">Not a technique. The substrate every later argument sits on.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <h4>Concepts</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Tokens.</strong> What a token is, why cost and limits are denominated in them, why <code>"strawberry"</code> arithmetic fails. Run a tokenizer on your own text until the counts stop surprising you.</span><span class="tref"><a href="https://tiktokenizer.vercel.app/" target="_blank" rel="noopener noreferrer">Tiktokenizer playground</a> <span class="sep">·</span> <a href="https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken" target="_blank" rel="noopener noreferrer">Count tokens with tiktoken</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>The context window is the whole interface.</strong> The model is stateless — "memory" is you resending the conversation every single call. Internalising this explains RAG, caching, compaction, and most cost problems in one go.</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/context-windows" target="_blank" rel="noopener noreferrer">Context windows</a> <span class="sep">·</span> <a href="https://developers.openai.com/api/docs/guides/conversation-state" target="_blank" rel="noopener noreferrer">Conversation state</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Sampling.</strong> Next-token prediction, temperature/top-p, and why "make it deterministic" is a request you cannot fully grant.</span><span class="tref"><a href="https://huggingface.co/blog/how-to-generate" target="_blank" rel="noopener noreferrer">Decoding methods</a> <span class="sep">·</span> <a href="https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/" target="_blank" rel="noopener noreferrer">Defeating nondeterminism</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>The cost equation.</strong> Input $/MTok and output $/MTok are different numbers, usually 4–5× apart. Output tokens are the expensive ones.</span><span class="tref"><a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener noreferrer">API pricing table</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Latency has two numbers.</strong> Time-to-first-token (what a streaming UI feels like) and total time (what a batch job cares about). They optimise differently.</span><span class="tref"><a href="https://clickhouse.com/resources/engineering/llm-inference-latency" target="_blank" rel="noopener noreferrer">LLM inference latency</a> <span class="sep">·</span> <a href="https://developers.openai.com/api/docs/guides/latency-optimization" target="_blank" rel="noopener noreferrer">Latency optimization</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Enough transformer intuition to not be fooled.</strong> Attention, embeddings, pretraining vs post-training. You will not be asked to derive backprop for this role — you <em>will</em> be asked why a model hallucinates, and "it's a next-token predictor with no retrieval of ground truth" is the answer.</span><span class="tref"><a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank" rel="noopener noreferrer">Karpathy deep dive</a> <span class="sep">·</span> <a href="https://www.3blue1brown.com/lessons/attention" target="_blank" rel="noopener noreferrer">3Blue1Brown attention</a></span></span></label></li>
+  </ul>
+
+  <h4>Do</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><span class="tag">setup</span>Get an API key and make a raw HTTP call with <code>curl</code> before you touch any SDK. See the JSON request and response once with nothing in between.</span><span class="tref"><a href="https://platform.claude.com/docs/en/get-started" target="_blank" rel="noopener noreferrer">Get started with Claude</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><span class="tag">setup</span>Then the official SDK. Same call, twenty lines of Python.</span><span class="tref"><a href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener noreferrer">Python SDK</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Multi-turn by hand: build the <code>messages</code> array yourself across three turns. Watch the input token count climb each time.</span><span class="tref"><a href="https://developers.openai.com/api/docs/guides/conversation-state" target="_blank" rel="noopener noreferrer">Conversation state</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Same prompt across a frontier model and a small fast model. Compare answer quality, latency, and cost. Form an opinion about when the cheap one is enough.</span><span class="tref"><a href="https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence" target="_blank" rel="noopener noreferrer">Cost vs intelligence</a> <span class="sep">·</span> <a href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener noreferrer">LLM leaderboard</a></span></span></label></li>
+  </ul>
+
+  <div class="ship">
+    <span class="label">Week 1 deliverable</span>
+    <p>A ~60-line script: takes a question, calls the model, prints the answer <em>and</em> input tokens, output tokens, and cost in cents. Every later phase reuses this cost print. If you can't see what a call costs, you will not reason about cost.</p>
+  </div>
+
+  <h4>The cost math, worked once</h4>
+  <p>Do this arithmetic by hand now and it stays with you. A document-Q&amp;A request carrying 8,000 tokens of retrieved context and returning 600 tokens, on a mid-tier model at <span style="font-family:var(--f-mono);font-size:.88em">$2</span>/MTok in and <span style="font-family:var(--f-mono);font-size:.88em">$10</span>/MTok out:</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Component</th><th class="mono">Tokens</th><th class="mono">Rate /MTok</th><th class="mono">Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Input (prompt + 8k context)</td><td class="mono">8,000</td><td class="mono">$2.00</td><td class="mono">$0.0160</td></tr>
+        <tr><td>Output</td><td class="mono">600</td><td class="mono">$10.00</td><td class="mono">$0.0060</td></tr>
+        <tr><td><strong>Per request</strong></td><td class="mono">8,600</td><td class="mono">—</td><td class="mono"><strong>$0.022</strong></td></tr>
+        <tr><td><strong>At 50k requests/day</strong></td><td class="mono">—</td><td class="mono">—</td><td class="mono"><strong>$1,100/day</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Now redo it on a top-tier model at <span style="font-family:var(--f-mono);font-size:.88em">$5</span>/<span style="font-family:var(--f-mono);font-size:.88em">$25</span>: <span style="font-family:var(--f-mono);font-size:.88em">$0.055</span>/request, <span style="font-family:var(--f-mono);font-size:.88em">$2,750</span>/day. That 2.5× is the entire substance of "which model should we use", and being able to produce this table live is a genuine differentiator in a design round.</p>
+  <p class="footnote">Rates above are illustrative, current to roughly mid-2026 and falling steadily — always price from the provider's live pricing page, never from memory. The <em>method</em> is the durable part.</p>
+
+  <div class="note">
+    <span class="label">Why this is first</span>
+    <p>RAG, caching, agent design, and model selection are all arguments about <em>what goes in the context window and what it costs.</em> Skip this week and every later topic becomes vocabulary instead of reasoning.</p>
+  </div>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank" rel="noopener noreferrer">Deep Dive into LLMs like ChatGPT</a><span class="kind">video</span></span>
+      <span class="r-why">3h31m, chaptered: tokenization, pretraining vs post-training, hallucination — one spine for Phase 0</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/context-windows" target="_blank" rel="noopener noreferrer">Context windows</a><span class="kind">docs</span></span>
+      <span class="r-why">Exact accounting: what counts, how turns accumulate, overflow stop reasons, 1M limits</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://tiktokenizer.vercel.app/" target="_blank" rel="noopener noreferrer">Tiktokenizer</a><span class="kind">tool</span></span>
+      <span class="r-why">Paste text, switch model, watch the split change — proves token counts do not port across models</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken" target="_blank" rel="noopener noreferrer">How to count tokens with tiktoken</a><span class="kind">guide</span></span>
+      <span class="r-why">Official runnable Python: encode, decode, count tokens for a real chat payload</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener noreferrer">Transformer Explainer: LLM Transformer Model Visually Explained</a><span class="kind">tool</span></span>
+      <span class="r-why">Live GPT-2 in-browser: drag temperature, top-k, top-p; watch attention and probabilities shift</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener noreferrer">Pricing</a><span class="kind">docs</span></span>
+      <span class="r-why">Live per-MTok table plus worked input/output/cache cost examples you can copy</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://clickhouse.com/resources/engineering/llm-inference-latency" target="_blank" rel="noopener noreferrer">LLM inference latency: TTFT, tokens per second, and what to measure</a><span class="kind">post</span></span>
+      <span class="r-why">July 2026: end-to-end = TTFT + tokens x TPOT, as OpenTelemetry percentiles</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener noreferrer">Why Language Models Hallucinate</a><span class="kind">paper</span></span>
+      <span class="r-why">Primary source: benchmark scoring rewards confident guessing over admitting uncertainty</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.redhat.com/articles/2025/11/04/post-training-methods-language-models" target="_blank" rel="noopener noreferrer">Post-training methods for language models</a><span class="kind">post</span></span>
+      <span class="r-why">Nov 2025 text version: SFT, LoRA, DPO, GRPO, RLHF in one sitting</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/api/docs/guides/conversation-state" target="_blank" rel="noopener noreferrer">Conversation state</a><span class="kind">docs</span></span>
+      <span class="r-why">Says it outright: each request independent and stateless; shows the message-array pattern</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://huggingface.co/blog/how-to-generate" target="_blank" rel="noopener noreferrer">How to generate text: using different decoding methods for language generation with Transformers</a><span class="kind">post</span></span>
+      <span class="r-why">Greedy, beam, temperature, top-k, top-p — each with runnable transformers code</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.3blue1brown.com/lessons/attention" target="_blank" rel="noopener noreferrer">Attention in transformers, step-by-step</a><span class="kind">guide</span></span>
+      <span class="r-why">Queries, keys, values in prose and diagrams; no linear-algebra background assumed</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/" target="_blank" rel="noopener noreferrer">Defeating Nondeterminism in LLM Inference</a><span class="kind">post</span></span>
+      <span class="r-why">Answers the interview trap: temperature 0 still varies because batch size changes kernels</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 1 ============ -->
+<section id="p1">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">01</span><span>Phase</span><span class="when">Weeks 2–3 · Oct 12–25</span></div>
+    <h2>The API surface, properly</h2>
+  </div>
+  <p class="lede">Everything a production call needs that a tutorial call doesn't. This is where "I've used an LLM" becomes "I've shipped one."</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <h4>Core</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>System prompt vs user message.</strong> What belongs in each, and why mixing them is a security problem (Phase 5 collects the bill).</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener noreferrer">Prompting best practices</a> <span class="sep">·</span> <a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks" target="_blank" rel="noopener noreferrer">Mitigate jailbreaks</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Streaming.</strong> Consume a token stream, render it progressively, handle a mid-stream disconnect. Know why long or high-<code>max_tokens</code> requests need streaming to avoid HTTP timeouts.</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/streaming" target="_blank" rel="noopener noreferrer">Streaming messages</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Structured output.</strong> Constrain the response to a JSON schema instead of parsing prose. This single technique removes most "the model returned something weird" bugs — reach for it before you reach for a regex.</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs" target="_blank" rel="noopener noreferrer">Structured outputs</a> <span class="sep">·</span> <a href="https://python.useinstructor.com/" target="_blank" rel="noopener noreferrer">Instructor</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Tool / function calling.</strong> Not agents yet — just the mechanic: you declare a schema, the model returns a structured call, <em>you</em> execute it and hand back the result. Understand that the model never runs anything itself.</span><span class="tref"><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" target="_blank" rel="noopener noreferrer">Tool use with Claude</a> <span class="sep">·</span> <a href="https://developers.openai.com/api/docs/guides/function-calling" target="_blank" rel="noopener noreferrer">OpenAI function calling</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Errors you will actually hit.</strong> 429 rate limits, 5xx, connection drops, context-length-exceeded. Exponential backoff <em>with jitter</em>, and know why the jitter matters.</span><span class="tref"><a href="https://platform.claude.com/docs/en/api/errors" target="_blank" rel="noopener noreferrer">Claude API errors</a> <span class="sep">·</span> <a href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="noopener noreferrer">Backoff and jitter</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Timeouts.</strong> Default SDK timeouts are generous (often ~10 min). Set your own. Know that retries multiply wall-clock.</span><span class="tref"><a href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener noreferrer">Python SDK</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Prompt caching.</strong> A stable prefix gets cached and re-reads cheaply. It is <em>prefix</em> matching — one byte changed anywhere early (a timestamp, unsorted JSON keys) silently invalidates everything after it. Order your request: stable system + tools first, volatile user content last.</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" target="_blank" rel="noopener noreferrer">Prompt caching</a> <span class="sep">·</span> <a href="https://docs.vllm.ai/en/latest/design/prefix_caching/" target="_blank" rel="noopener noreferrer">Prefix caching design</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Batch APIs.</strong> Asynchronous, typically ~50% cost. The right answer whenever latency doesn't matter — and "does this need to be synchronous?" is a question interviewers like hearing.</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/batch-processing" target="_blank" rel="noopener noreferrer">Batch processing</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Reasoning / thinking modes and effort levels.</strong> Current frontier models think before answering, with a tunable depth. Know the tradeoff: more thinking is better on hard reasoning and wasted money on classification.</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/thinking" target="_blank" rel="noopener noreferrer">Thinking</a> <span class="sep">·</span> <a href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener noreferrer">Effort levels</a></span></span></label></li>
+  </ul>
+
+  <h4>Prompting — as engineering, not incantation</h4>
+  <p>Budget three sessions here, not three weeks. Prompting is real and it is also the most overhyped and fastest-decaying skill in this plan: tricks that mattered on 2023 models are noise or actively harmful on current ones. What persists:</p>
+  <ul>
+    <li><strong>Specificity over cleverness.</strong> State the task, the audience, the format, and the edge cases. Most "prompt engineering" is just writing an unambiguous spec.</li>
+    <li><strong>Examples beat adjectives.</strong> Two or three worked examples outperform a paragraph describing what you want.</li>
+    <li><strong>Make the output contract explicit</strong> — and then enforce it with structured output rather than hope.</li>
+    <li><strong>Give the model an out.</strong> "If the context doesn't contain the answer, say so" removes a large slice of hallucinations in RAG.</li>
+    <li><strong>Prompts are code.</strong> They go in version control, they get reviewed, they get an eval. A prompt without an eval is a change you cannot verify.</li>
+  </ul>
+
+  <div class="ship">
+    <span class="label">Phase deliverable</span>
+    <p>One HTTP endpoint that does a real extraction or classification job: strict JSON schema out, streaming where it helps, retry-with-backoff, a hard timeout, prompt caching on the stable prefix, and a structured log line per request carrying <code>input_tokens</code>, <code>output_tokens</code>, <code>cost_usd</code>, <code>latency_ms</code>.</p>
+    <p>That log line is the spine of Phases 4 and 5. Build it now.</p>
+  </div>
+
+  <div class="warn note">
+    <span class="label">Trap</span>
+    <p>Do not pick up an orchestration framework yet. Frameworks are abstractions over exactly the mechanics above — adopt one before you know the mechanics and you'll be debugging someone else's indirection with no mental model of what's underneath. Interviewers can tell in about two questions.</p>
+  </div>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/get-started" target="_blank" rel="noopener noreferrer">Get started with Claude</a><span class="kind">docs</span></span>
+      <span class="r-why">Same first call shown as raw curl and as Python SDK, side by side.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" target="_blank" rel="noopener noreferrer">Tool use with Claude</a><span class="kind">docs</span></span>
+      <span class="r-why">Full schema to tool_use to tool_result round trip in runnable Python.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="noopener noreferrer">Exponential Backoff And Jitter</a><span class="kind">post</span></span>
+      <span class="r-why">Simulations proving plain backoff still collapses; defines full, equal, decorrelated jitter.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener noreferrer">Prompting best practices</a><span class="kind">docs</span></span>
+      <span class="r-why">Spec-writing reference: output contracts, XML structure, altitude, agentic prompting. No gimmicks.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://python.useinstructor.com/" target="_blank" rel="noopener noreferrer">Instructor</a><span class="kind">docs</span></span>
+      <span class="r-why">The portable pattern: Pydantic schema, validate, auto-retry on failure — works across every provider</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener noreferrer">Python SDK</a><span class="kind">docs</span></span>
+      <span class="r-why">Documents 10-minute timeout default, max_retries=2, which statuses retry, status-to-exception table.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching" target="_blank" rel="noopener noreferrer">Prompt caching</a><span class="kind">docs</span></span>
+      <span class="r-why">Carries the invalidation cascade table and the silent miss where both usage counters read zero.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/streaming" target="_blank" rel="noopener noreferrer">Streaming messages</a><span class="kind">docs</span></span>
+      <span class="r-why">Every SSE event and delta type, plus model-specific mid-stream error recovery sections.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/structured-outputs" target="_blank" rel="noopener noreferrer">Structured outputs</a><span class="kind">docs</span></span>
+      <span class="r-why">Names the unsupported schema keywords and the refusal/max_tokens failure modes others omit.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/api/errors" target="_blank" rel="noopener noreferrer">Claude API errors</a><span class="kind">docs</span></span>
+      <span class="r-why">Canonical status list: 429, 500, 504, 529, retry-after, and SDK auto-retry.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons" target="_blank" rel="noopener noreferrer">Handling stop reasons</a><span class="kind">docs</span></span>
+      <span class="r-why">Only page covering model_context_window_exceeded and truncation: failures that arrive inside a 200.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/batch-processing" target="_blank" rel="noopener noreferrer">Batch processing</a><span class="kind">docs</span></span>
+      <span class="r-why">States the 24-hour expiry, 29-day result window, 50% discount, and custom_id matching.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/thinking" target="_blank" rel="noopener noreferrer">Thinking</a><span class="kind">docs</span></span>
+      <span class="r-why">Current canonical: adaptive modes, replaying thinking blocks in tool loops, cache interaction.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener noreferrer">Effort</a><span class="kind">docs</span></span>
+      <span class="r-why">The five levels with per-model defaults; warns top-level changes restart the cache.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/api/docs/guides/function-calling" target="_blank" rel="noopener noreferrer">Function calling</a><span class="kind">docs</span></span>
+      <span class="r-why">Cross-vendor check: OpenAI&#x27;s tools/strict shape differs from Anthropic&#x27;s input_schema and tool_use.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.litellm.ai/docs/completion/input" target="_blank" rel="noopener noreferrer">LiteLLM — completion input params</a><span class="kind">docs</span></span>
+      <span class="r-why">One call signature across providers, with a per-provider support matrix for every parameter</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 2 ============ -->
+<section id="p2">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">02</span><span>Phase</span><span class="when">Weeks 4–5 · Oct 26 – Nov 8</span></div>
+    <h2>Retrieval</h2>
+  </div>
+  <p class="lede">Giving the model facts it wasn't trained on. The most commonly built, most commonly broken, and most commonly asked-about AI feature there is.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <h4>Concepts</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Embeddings.</strong> Text → vector, similar meaning → nearby vectors. Compute cosine similarity by hand on three sentences once; it demystifies the whole subject.</span><span class="tref"><a href="https://simonwillison.net/2023/Oct/23/embeddings/" target="_blank" rel="noopener noreferrer">Embeddings explained</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Vector search.</strong> Nearest-neighbour lookup, ANN indexes and the recall/speed tradeoff. Start with <code>pgvector</code> or an in-memory index — a dedicated vector DB is a scaling decision, not a starting one.</span><span class="tref"><a href="https://www.pinecone.io/learn/series/faiss/vector-indexes/" target="_blank" rel="noopener noreferrer">ANN index tradeoffs</a> <span class="sep">·</span> <a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener noreferrer">pgvector</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Chunking is the whole ballgame.</strong> Size, overlap, and respecting document structure. Most bad RAG is bad chunking: a chunk that splits a table from its header retrieves perfectly and answers wrongly.</span><span class="tref"><a href="https://www.trychroma.com/research/evaluating-chunking" target="_blank" rel="noopener noreferrer">Chunking strategies</a> <span class="sep">·</span> <a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener noreferrer">Contextual Retrieval</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Hybrid search.</strong> Vector search misses exact strings — error codes, SKUs, surnames. Combine with keyword/BM25. Know that pure-vector is a common and visible design mistake.</span><span class="tref"><a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener noreferrer">Contextual Retrieval</a> <span class="sep">·</span> <a href="https://github.com/pgvector/pgvector-python/blob/master/examples/hybrid_search/rrf.py" target="_blank" rel="noopener noreferrer">Hybrid search with RRF</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Reranking.</strong> Retrieve 50 cheaply, rerank to the best 5, send only those. Usually the highest quality-per-dollar upgrade in the pipeline.</span><span class="tref"><a href="https://www.pinecone.io/learn/series/rag/rerankers/" target="_blank" rel="noopener noreferrer">Two-stage reranking</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Metadata filters.</strong> Tenant, date, permissions. <em>Permission-filtering at retrieval time</em> is the answer to "how do you stop user A seeing user B's documents" — and it gets asked.</span><span class="tref"><a href="https://qdrant.tech/documentation/manage-data/multitenancy/" target="_blank" rel="noopener noreferrer">Qdrant multitenancy</a> <span class="sep">·</span> <a href="https://qdrant.tech/articles/filtered-vector-search-acorn/" target="_blank" rel="noopener noreferrer">Filtered vector search</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Citations.</strong> Return the source spans alongside the answer. Changes the product from "trust me" to "check me", and the interviewer will notice you did it.</span><span class="tref"><a href="https://platform.claude.com/docs/en/build-with-claude/citations" target="_blank" rel="noopener noreferrer">Citations API</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Index freshness.</strong> What happens when a source document changes? Re-embed, upsert, delete. Most tutorials ignore this; every real system lives or dies by it.</span><span class="tref"><a href="https://www.langchain.com/blog/syncing-data-sources-to-vector-stores" target="_blank" rel="noopener noreferrer">Syncing to vector stores</a></span></span></label></li>
+  </ul>
+
+  <h4>Why RAG fails — be able to list these cold</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:26%">Failure</th><th>Symptom</th><th style="width:30%">Fix</th></tr></thead>
+      <tbody>
+        <tr><td>Retrieval miss</td><td>The answer exists in the corpus; the right chunk was never fetched</td><td>Hybrid search, query rewriting, raise <code>k</code> then rerank</td></tr>
+        <tr><td>Bad chunk boundary</td><td>Right document, wrong fragment — context cut mid-table or mid-clause</td><td>Structure-aware chunking, overlap, larger chunks + rerank</td></tr>
+        <tr><td>Context stuffing</td><td>20 chunks in, quality <em>down</em>, cost up</td><td>Fewer, better chunks. More context is not more signal</td></tr>
+        <tr><td>Stale index</td><td>Confidently cites a deleted or superseded policy</td><td>Re-index pipeline, document versioning, show dates</td></tr>
+        <tr><td>No abstention</td><td>Invents an answer when the corpus genuinely lacks one</td><td>Explicit "say you don't know" instruction + eval cases that test it</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <span class="label">The question you'll be asked: "why not just put everything in a 1M-token context?"</span>
+    <p>Sometimes you should — for a single large document, long-context plus prompt caching beats a retrieval pipeline on both accuracy and engineering cost. It stops working when: the corpus exceeds the window; you're paying for 1M tokens on every request to use 3k of them; latency matters; or you need permission filtering per user. The strong answer isn't "RAG is better" — it's naming the crossover point. That nuance is worth more than any implementation detail.</p>
+  </div>
+
+  <div class="ship">
+    <span class="label">Phase deliverable</span>
+    <p>RAG over a corpus you actually own — your notes, your team's docs, a repo's markdown. Hybrid retrieval, a reranking step, citations in the response.</p>
+    <p>Then the part almost nobody does: <strong>hand-write 30 question → expected-source pairs and measure recall@5.</strong> One number. Change the chunk size, measure again. You now have something to say in an interview that 90% of candidates cannot say.</p>
+  </div>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://simonwillison.net/2023/Oct/23/embeddings/" target="_blank" rel="noopener noreferrer">Embeddings: What they are and why they matter</a><span class="kind">post</span></span>
+      <span class="r-why">Hand-rolls cosine_similarity in plain Python; no linear algebra prerequisites, pure engineer&#x27;s mental model</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener noreferrer">pgvector/pgvector: Open-source vector similarity search for Postgres</a><span class="kind">docs</span></span>
+      <span class="r-why">Primary source; HNSW/IVFFlat tuning, hybrid search and upserts in one short README</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener noreferrer">Introducing Contextual Retrieval</a><span class="kind">post</span></span>
+      <span class="r-why">Ties chunking, BM25 fusion and reranking to measured 35%/49%/67% retrieval-failure drops</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://jxnl.co/writing/2025/05/19/there-are-only-6-rag-evals/" target="_blank" rel="noopener noreferrer">There Are Only 6 RAG Evals</a><span class="kind">post</span></span>
+      <span class="r-why">Frames every RAG eval as a Q/C/A pair; separates cheap retrieval from LLM-judged</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.pinecone.io/learn/series/rag/rerankers/" target="_blank" rel="noopener noreferrer">Rerankers and Two-Stage Retrieval</a><span class="kind">guide</span></span>
+      <span class="r-why">Clearest account of why bi-encoders lose information and cross-encoders recover it, with Python</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.pinecone.io/learn/series/faiss/vector-indexes/" target="_blank" rel="noopener noreferrer">Nearest Neighbor Indexes for Similarity Search</a><span class="kind">guide</span></span>
+      <span class="r-why">Side-by-side Flat/LSH/IVF/HNSW table of recall, latency and memory, with runnable Faiss code</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.trychroma.com/research/evaluating-chunking" target="_blank" rel="noopener noreferrer">Evaluating Chunking Strategies for Retrieval</a><span class="kind">paper</span></span>
+      <span class="r-why">Measured token-level recall and precision across chunkers on five corpora; code released</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/pgvector/pgvector-python/blob/master/examples/hybrid_search/rrf.py" target="_blank" rel="noopener noreferrer">pgvector-python examples/hybrid_search/rrf.py</a><span class="kind">tool</span></span>
+      <span class="r-why">Fifty lines of real SQL fusing pgvector and tsvector ranks; author&#x27;s own example</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://qdrant.tech/documentation/manage-data/multitenancy/" target="_blank" rel="noopener noreferrer">Multitenancy</a><span class="kind">docs</span></span>
+      <span class="r-why">Primary doc on tenant filters, payload indexes with is_tenant, and shard-isolation cost tradeoffs</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://qdrant.tech/articles/filtered-vector-search-acorn/" target="_blank" rel="noopener noreferrer">Filtered Vector Search: What ACORN Fixes, and What Fixes ACORN</a><span class="kind">post</span></span>
+      <span class="r-why">Benchmarks showing a 1% filter drops HNSW recall from usable to 0.1%</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/build-with-claude/citations" target="_blank" rel="noopener noreferrer">Citations</a><span class="kind">docs</span></span>
+      <span class="r-why">Primary API docs; returns cited_text with exact char ranges, page numbers, block indices</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.langchain.com/blog/syncing-data-sources-to-vector-stores" target="_blank" rel="noopener noreferrer">Syncing data sources to vector stores</a><span class="kind">post</span></span>
+      <span class="r-why">Record-manager content hashing and three cleanup modes, from the team that shipped it</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener noreferrer">Context Rot: How Increasing Input Tokens Impacts LLM Performance</a><span class="kind">paper</span></span>
+      <span class="r-why">18 models measured degrading on long inputs; the evidence against reflexive context stuffing</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://ai.google.dev/gemini-api/docs/long-context" target="_blank" rel="noopener noreferrer">Long context</a><span class="kind">docs</span></span>
+      <span class="r-why">The pro-stuffing case, honestly stated: multi-needle accuracy loss, latency, and caching economics</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://weaviate.io/blog/retrieval-evaluation-metrics" target="_blank" rel="noopener noreferrer">Evaluation Metrics for Search and Recommendation Systems</a><span class="kind">post</span></span>
+      <span class="r-why">Formulas and worked examples for precision@k, recall@k, MRR, MAP, NDCG with pytrec_eval</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 3 ============ -->
+<section id="p3">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">03</span><span>Phase</span><span class="when">Weeks 6–7 · Nov 9–22</span></div>
+    <h2>Agents and tool use</h2>
+  </div>
+  <p class="lede">Letting the model drive a loop. Genuinely powerful, massively over-applied, and the area where showing restraint scores higher than showing enthusiasm.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <h4>Build the loop by hand first</h4>
+  <p>Before any framework, write this yourself — it is about forty lines and it is the entire concept:</p>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Call the model with a set of tool schemas → response comes back with a tool-call block → you execute the function → you append the result to the message list → you call again → repeat until the model returns a final answer instead of a tool call.</span><span class="tref"><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" target="_blank" rel="noopener noreferrer">Tool use with Claude</a> <span class="sep">·</span> <a href="https://github.com/anthropics/claude-cookbooks/tree/main/tool_use" target="_blank" rel="noopener noreferrer">Tool use cookbooks</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Handle <strong>parallel tool calls</strong>: one response can contain several calls. Execute them concurrently and return <em>all</em> results in a single message — splitting them across messages teaches the model to stop parallelising.</span><span class="tref"><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use" target="_blank" rel="noopener noreferrer">Parallel tool use</a> <span class="sep">·</span> <a href="https://docs.python.org/3/library/asyncio-task.html" target="_blank" rel="noopener noreferrer">Python asyncio tasks</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Handle a failing tool: return the error <em>as a tool result</em> flagged as an error, so the model can recover. Don't throw it away and don't crash the loop.</span><span class="tref"><a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview" target="_blank" rel="noopener noreferrer">Tool use with Claude</a> <span class="sep">·</span> <a href="https://github.com/humanlayer/12-factor-agents" target="_blank" rel="noopener noreferrer">12-Factor Agents</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Add hard stops: a max-turn count, a cumulative token budget, a wall-clock cap. Non-negotiable. An unbounded agent loop is a billing incident.</span><span class="tref"><a href="https://code.claude.com/docs/en/agent-sdk/agent-loop" target="_blank" rel="noopener noreferrer">Agent loop limits</a></span></span></label></li>
+  </ul>
+
+  <h4>Tool design — where the quality actually is</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">The tool's <em>description</em> is a prompt. It is how the model decides when to call it. Vague description → wrong tool at the wrong time.</span><span class="tref"><a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">Writing tools for agents</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Few powerful tools beat many narrow ones. Twenty overlapping tools produce selection errors; the model has to disambiguate before it can act.</span><span class="tref"><a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">Writing tools for agents</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Make tools hard to misuse: enums over free strings, required fields, strict schema validation. Validate every argument before executing — the model <em>will</em> eventually hand you something malformed.</span><span class="tref"><a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">Writing tools for agents</a> <span class="sep">·</span> <a href="https://python.useinstructor.com/" target="_blank" rel="noopener noreferrer">Instructor</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Return terse, structured results. Tool output goes back into the context window and you pay for it every subsequent turn.</span><span class="tref"><a href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">Writing tools for agents</a> <span class="sep">·</span> <a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener noreferrer">Context Rot</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Gate destructive actions behind human confirmation. "Would you ever let this agent issue a refund unsupervised?" is a judgment question, and the answer is a permissioning design, not "yes" or "no".</span><span class="tref"><a href="https://code.claude.com/docs/en/agent-sdk/permissions" target="_blank" rel="noopener noreferrer">Agent SDK permissions</a> <span class="sep">·</span> <a href="https://docs.langchain.com/oss/python/langgraph/interrupts" target="_blank" rel="noopener noreferrer">Human-in-the-loop interrupts</a></span></span></label></li>
+  </ul>
+
+  <h4>Then: MCP, and the four-question gate</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>MCP (Model Context Protocol)</strong> — the emerging open standard for exposing tools and data to models, so an integration is written once instead of per-product. Know what problem it solves and connect to one server. Worth an hour; increasingly assumed knowledge.</span><span class="tref"><a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer">What is MCP?</a> <span class="sep">·</span> <a href="https://modelcontextprotocol.io/docs/learn/architecture" target="_blank" rel="noopener noreferrer">MCP architecture</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Context management in long loops</strong> — tool results accumulate until the window fills. Know the three responses: clear old tool results, compact/summarise history, or offload to external memory.</span><span class="tref"><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Context engineering</a> <span class="sep">·</span> <a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener noreferrer">Context Rot</a></span></span></label></li>
+  </ul>
+
+  <div class="warn note">
+    <span class="label">Ask these four before building any agent — out loud, in the interview</span>
+    <p><strong>Complexity</strong> — is the task genuinely multi-step and hard to specify in advance, or is it a fixed pipeline wearing a costume? <strong>Value</strong> — does the outcome justify the latency and cost of a loop? <strong>Viability</strong> — is the model actually good at this task? <strong>Cost of error</strong> — can mistakes be caught and reversed (tests, review, rollback)?</p>
+    <p>A "no" anywhere means use a single call or a deterministic pipeline instead. Reaching for an agent when a <code>switch</code> statement would do is the most common senior-level red flag in this field. The candidate who says "I'd start with one structured call and only add a loop if the task shape demands it" outscores the one who reaches for a multi-agent swarm.</p>
+  </div>
+
+  <div class="ship">
+    <span class="label">Phase deliverable</span>
+    <p>An agent over your Phase 2 retrieval project with three or four real tools (search the corpus, fetch a record, perform one write action behind a confirmation). Hard turn and cost caps. A trace log that records every turn: tool called, arguments, result, tokens, cumulative cost.</p>
+    <p>Then deliberately break it. Give it an impossible task and watch it loop. Give it an ambiguous one and watch it pick the wrong tool. Write down what happened — those two paragraphs are your answer to "tell me about a time an AI system failed on you."</p>
+  </div>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Building Effective Agents</a><span class="kind">guide</span></span>
+      <span class="r-why">Primary source for the workflow/agent split; its &quot;when not to&quot; section is explicit</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.anthropic.com/engineering/writing-tools-for-agents" target="_blank" rel="noopener noreferrer">Writing effective tools for AI agents—using AI agents</a><span class="kind">guide</span></span>
+      <span class="r-why">Only source combining tool consolidation, namespacing, token-efficient returns and agent-written tool evals</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer">What is the Model Context Protocol (MCP)?</a><span class="kind">docs</span></span>
+      <span class="r-why">Official five-minute answer to &quot;why MCP&quot;: one standard instead of per-client connectors</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Effective context engineering for AI agents</a><span class="kind">guide</span></span>
+      <span class="r-why">Names all four levers: compaction, tool-result clearing, structured note-taking, sub-agent isolation</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://github.com/humanlayer/12-factor-agents" target="_blank" rel="noopener noreferrer">12-Factor Agents</a><span class="kind">guide</span></span>
+      <span class="r-why">Vendor-neutral patterns for why agents break past 80% reliability; own your loop, own your context</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/anthropics/claude-cookbooks/tree/main/tool_use" target="_blank" rel="noopener noreferrer">claude-cookbooks / tool_use (official Anthropic notebooks)</a><span class="kind">tool</span></span>
+      <span class="r-why">Runnable Python: customer_service_agent.ipynb is a real `while stop_reason == &quot;tool_use&quot;` loop</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://ampcode.com/notes/how-to-build-an-agent" target="_blank" rel="noopener noreferrer">How to Build an Agent</a><span class="kind">post</span></span>
+      <span class="r-why">Best narrative that an agent is just a loop; code is Go, not Python</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use" target="_blank" rel="noopener noreferrer">Parallel tool use</a><span class="kind">docs</span></span>
+      <span class="r-why">States the one-user-message rule and the history formatting that silently disables parallelism</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://code.claude.com/docs/en/agent-sdk/agent-loop" target="_blank" rel="noopener noreferrer">How the agent loop works (Claude Agent SDK)</a><span class="kind">docs</span></span>
+      <span class="r-why">Names max_turns, max_budget_usd and the error_max_turns result subtype, with Python code</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://modelcontextprotocol.io/docs/learn/architecture" target="_blank" rel="noopener noreferrer">Architecture overview — Model Context Protocol</a><span class="kind">spec</span></span>
+      <span class="r-why">Hosts/clients/servers, data vs transport layers, real JSON-RPC traces for tools/list and tools/call</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://huyenchip.com/2025/01/07/agents.html" target="_blank" rel="noopener noreferrer">Agents</a><span class="kind">post</span></span>
+      <span class="r-why">Clearest taxonomy of planning vs tool failures, plus per-step agent efficiency metrics</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://cognition.com/blog/dont-build-multi-agents" target="_blank" rel="noopener noreferrer">Don&#x27;t Build Multi-Agents</a><span class="kind">post</span></span>
+      <span class="r-why">Devin&#x27;s builders on context fragmentation and conflicting implicit decisions; argues single-threaded loops</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://code.claude.com/docs/en/agent-sdk/permissions" target="_blank" rel="noopener noreferrer">Configure permissions (Claude Agent SDK)</a><span class="kind">docs</span></span>
+      <span class="r-why">Hook/deny/ask/mode/allow precedence, canUseTool, and the auto-approval bypass trap; Python examples</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener noreferrer">How we built our multi-agent research system</a><span class="kind">post</span></span>
+      <span class="r-why">The credible counter-case to &quot;Don’t Build Multi-Agents&quot; — read both, pick a side, defend it</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.langchain.com/oss/python/langgraph/overview" target="_blank" rel="noopener noreferrer">LangGraph overview</a><span class="kind">docs</span></span>
+      <span class="r-why">The orchestration framework you adopt only after hand-rolling the loop — know what it buys</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.langchain.com/oss/python/langgraph/interrupts" target="_blank" rel="noopener noreferrer">Human-in-the-loop with interrupts</a><span class="kind">docs</span></span>
+      <span class="r-why">Vendor-neutral mechanics for pausing an agent mid-run for approval and resuming it</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 4 ============ -->
+<section id="p4">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">04</span><span>Phase</span><span class="when">Weeks 8–9 · Nov 23 – Dec 6</span></div>
+    <h2>Evals</h2>
+  </div>
+  <p class="lede">The highest-leverage two weeks in this plan. If you only get good at one thing, get good at this one.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <p>Here is the asymmetry worth exploiting: nearly every candidate can describe RAG, and most can describe an agent loop. Very few can describe how they <em>knew</em> their change made things better. In a non-deterministic system you cannot ship on vibes — a prompt tweak that fixes the case in front of you routinely breaks three you aren't looking at. The eval is the regression test, and treating it as the centre of the discipline rather than an afterthought is the clearest available signal of seniority.</p>
+
+  <h4>Building an eval set</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Start at 30–50 cases, not 500.</strong> A small eval you actually run every change beats a large one you run quarterly.</span><span class="tref"><a href="https://hamel.dev/blog/posts/evals-faq/" target="_blank" rel="noopener noreferrer">Hamel evals FAQ</a> <span class="sep">·</span> <a href="https://hamel.dev/blog/posts/evals/" target="_blank" rel="noopener noreferrer">Your AI Product Needs Evals</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Source cases from reality</strong> — real user inputs, real failures, real transcripts. Synthetic cases systematically miss the weird inputs that break things, because the generator shares the system's blind spots.</span><span class="tref"><a href="https://hamel.dev/blog/posts/field-guide/" target="_blank" rel="noopener noreferrer">Rapidly Improving AI Products</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Over-weight the hard cases.</strong> Ambiguous questions, missing information, adversarial phrasing, inputs that <em>should</em> be refused or abstained on. An eval of easy cases reports 98% and tells you nothing.</span><span class="tref"><a href="https://platform.claude.com/docs/en/test-and-evaluate/develop-tests" target="_blank" rel="noopener noreferrer">Define success criteria</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Split train and test.</strong> Iterate against a train slice; score the held-out slice. Without this you will tune straight into overfitting and won't know it.</span><span class="tref"><a href="https://hamel.dev/blog/posts/evals-faq/" target="_blank" rel="noopener noreferrer">Hamel evals FAQ</a></span></span></label></li>
+  </ul>
+
+  <h4>Grading — in order of preference</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:24%">Method</th><th>Use when</th><th style="width:30%">Watch for</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Programmatic</strong></td><td>There is a checkable fact: valid JSON, correct label, required field present, the right document cited</td><td>Nothing. Always prefer this. Cheap, fast, deterministic</td></tr>
+        <tr><td><strong>Human</strong></td><td>Calibrating anything else, and for the first 20 cases of any new eval</td><td>Expensive and slow — so spend it on calibration, not volume</td></tr>
+        <tr><td><strong>LLM-as-judge</strong></td><td>Open-ended quality where no programmatic check exists</td><td>Position bias, verbosity bias, self-preference. Must be validated against human labels before you trust it. Give it a rubric, not "is this good?"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Running them</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Report cost and latency alongside the quality score. A change that wins 2 points and triples the bill is a loss, and saying so is the judgment being tested.</span><span class="tref"><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Demystifying evals</a> <span class="sep">·</span> <a href="https://clickhouse.com/resources/engineering/llm-inference-latency" target="_blank" rel="noopener noreferrer">LLM inference latency</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Measure <strong>cost per completed task</strong>, not per request. A cheaper call that needs three retries isn't cheaper.</span><span class="tref"><a href="https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-1" target="_blank" rel="noopener noreferrer">Artificial Analysis index</a> <span class="sep">·</span> <a href="https://docs.langchain.com/langsmith/cost-tracking" target="_blank" rel="noopener noreferrer">LangSmith cost tracking</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Wire it into CI. An eval that requires remembering to run it will not get run.</span><span class="tref"><a href="https://www.promptfoo.dev/docs/integrations/ci-cd/" target="_blank" rel="noopener noreferrer">Promptfoo CI/CD</a> <span class="sep">·</span> <a href="https://inspect.aisi.org.uk/tutorial.html" target="_blank" rel="noopener noreferrer">Inspect tutorial</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Know offline vs online: an eval set catches regressions pre-merge; production signals (thumbs, acceptance rate, escalation rate, task completion) catch what your eval set didn't imagine. You need both, and the second feeds new cases back into the first.</span><span class="tref"><a href="https://docs.langchain.com/langsmith/evaluation-concepts" target="_blank" rel="noopener noreferrer">LangSmith eval concepts</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Keep a failure taxonomy. Group failures by <em>kind</em> — retrieval miss / wrong tool / format violation / refusal / hallucination. Where the bugs cluster tells you what to fix; a single aggregate score does not.</span><span class="tref"><a href="https://hamel.dev/blog/posts/field-guide/" target="_blank" rel="noopener noreferrer">Rapidly Improving AI Products</a> <span class="sep">·</span> <a href="https://huyenchip.com/2025/01/07/agents.html" target="_blank" rel="noopener noreferrer">Chip Huyen on agents</a></span></span></label></li>
+  </ul>
+
+  <div class="ship">
+    <span class="label">Phase deliverable</span>
+    <p>An eval suite over your Phase 2–3 project. 40+ cases, mixed graders, a one-command run that prints score, cost, and p95 latency.</p>
+    <p>Then use it: make three real changes (a chunking change, a model change, a prompt change) and record what each did to all three numbers. <strong>Write it up as a one-page report with a before/after table.</strong> That page is the most persuasive artefact you can bring to an interview — more than the project itself.</p>
+  </div>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://hamel.dev/blog/posts/field-guide/" target="_blank" rel="noopener noreferrer">A Field Guide to Rapidly Improving AI Products</a><span class="kind">post</span></span>
+      <span class="r-why">Makes the case for error analysis over dashboards; one sitting, highest signal.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Demystifying evals for AI agents</a><span class="kind">guide</span></span>
+      <span class="r-why">Primary source: grader types, regression suites and cost-per-task in one agent-focused read.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://hamel.dev/blog/posts/evals/" target="_blank" rel="noopener noreferrer">Your AI Product Needs Evals</a><span class="kind">post</span></span>
+      <span class="r-why">The foundational argument. Read this before the other two Hamel pieces, which assume it</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://hamel.dev/blog/posts/llm-judge/" target="_blank" rel="noopener noreferrer">Using LLM-as-a-Judge For Evaluation</a><span class="kind">guide</span></span>
+      <span class="r-why">How to actually build and calibrate a judge, not just a survey of why judges are biased</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://eugeneyan.com/writing/llm-evaluators/" target="_blank" rel="noopener noreferrer">Evaluating the Effectiveness of LLM-Evaluators (aka LLM-as-Judge)</a><span class="kind">post</span></span>
+      <span class="r-why">Reports actual position and verbosity bias percentages plus human-agreement numbers from the literature.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://inspect.aisi.org.uk/tutorial.html" target="_blank" rel="noopener noreferrer">Tutorial – Inspect</a><span class="kind">docs</span></span>
+      <span class="r-why">Python-native framework from UK AISI, committed to daily; shows programmatic and model-graded scorers.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://hamel.dev/blog/posts/evals-faq/" target="_blank" rel="noopener noreferrer">AI Evals: Everything You Need to Know</a><span class="kind">guide</span></span>
+      <span class="r-why">Hard numbers on sample sizes, train/dev/test splits, judge validation, CI-versus-monitoring.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://eugeneyan.com/writing/evals/" target="_blank" rel="noopener noreferrer">Task-Specific LLM Evals that Do &amp; Don&#x27;t Work</a><span class="kind">post</span></span>
+      <span class="r-why">Shows which deterministic metrics actually discriminate, with ROC-AUC and threshold tradeoffs.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/test-and-evaluate/develop-tests" target="_blank" rel="noopener noreferrer">Define success criteria and build evaluations - Claude Platform Docs</a><span class="kind">docs</span></span>
+      <span class="r-why">Copy-pasteable Python graders: exact match, cosine, ROUGE, Likert, binary, ordinal judges.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.promptfoo.dev/docs/integrations/ci-cd/" target="_blank" rel="noopener noreferrer">CI/CD Integration for LLM Eval and Security | Promptfoo</a><span class="kind">docs</span></span>
+      <span class="r-why">GitHub Actions, GitLab and Jenkins recipes with pass-rate gates that exit non-zero.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.langchain.com/langsmith/evaluation-concepts" target="_blank" rel="noopener noreferrer">Evaluation concepts - Docs by LangChain</a><span class="kind">docs</span></span>
+      <span class="r-why">Primary source splitting offline dataset evals from online scoring of production traces.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.langchain.com/langsmith/cost-tracking" target="_blank" rel="noopener noreferrer">Cost tracking - Docs by LangChain</a><span class="kind">docs</span></span>
+      <span class="r-why">Only verified docs attaching dollar cost per trace, including non-LLM tool steps.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-1" target="_blank" rel="noopener noreferrer">Artificial Analysis Intelligence Index v4.1: a shift toward agentic workloads</a><span class="kind">post</span></span>
+      <span class="r-why">Independent benchmark defining cost-per-task arithmetic, with current per-model dollar figures.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 5 ============ -->
+<section id="p5">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">05</span><span>Phase</span><span class="when">Week 10 · Dec 7–13</span></div>
+    <h2>Production — cost, latency, safety</h2>
+  </div>
+  <p class="lede">The questions a staff engineer asks in the second half of a design round.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <h4>Cost levers, in the order you should apply them</h4>
+  <p>Free wins before tradeoffs — this ordering is itself the answer to "the AI bill is too high, what do you do?"</p>
+  <ol>
+    <li><strong>Prompt caching.</strong> Usually the largest single win and it costs no quality. Verify it's actually hitting — a cache-read count stuck at zero means a silent invalidator in your prefix.</li>
+    <li><strong>Input hygiene.</strong> Stop sending what the model doesn't need. Retrieve 5 good chunks instead of 20 mediocre ones; trim boilerplate; prune dead conversation history.</li>
+    <li><strong>Output hygiene.</strong> Output tokens cost several times input tokens. Ask for the answer, not the answer plus a preamble plus a summary.</li>
+    <li><strong>Batch</strong> anything that isn't latency-sensitive, for roughly half price.</li>
+    <li><strong>Reasoning effort.</strong> Dial thinking depth down on routine traffic, up where correctness pays. Tune per route, not globally.</li>
+    <li><strong>Model choice, last.</strong> Route easy traffic to a small model and hard traffic to a large one — but measure first: a top model at low effort often beats a smaller model at high effort, and a single model keeps one cache namespace instead of fragmenting it.</li>
+  </ol>
+
+  <h4>Latency</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Stream, always, for anything a human waits on. Time-to-first-token is the number users feel.</span><span class="tref"><a href="https://developers.openai.com/api/docs/guides/latency-optimization" target="_blank" rel="noopener noreferrer">Latency optimization</a> <span class="sep">·</span> <a href="https://clickhouse.com/resources/engineering/llm-inference-latency" target="_blank" rel="noopener noreferrer">LLM inference latency</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Parallelise independent calls; don't chain what can fan out.</span><span class="tref"><a href="https://developers.openai.com/api/docs/guides/latency-optimization" target="_blank" rel="noopener noreferrer">Latency optimization</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Do retrieval and other prep work concurrently with anything else that doesn't depend on it.</span><span class="tref"><a href="https://developers.openai.com/api/docs/guides/latency-optimization" target="_blank" rel="noopener noreferrer">Latency optimization</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Know your p95, not your average. LLM latency distributions have long tails and the average hides them.</span><span class="tref"><a href="https://sre.google/sre-book/monitoring-distributed-systems/" target="_blank" rel="noopener noreferrer">Google SRE monitoring</a></span></span></label></li>
+  </ul>
+
+  <h4>Security — the part developers skip and interviewers probe</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Prompt injection.</strong> Anything that reaches the context window is untrusted input — including retrieved documents, tool results, web pages, and user uploads. Be able to state the core truth plainly: <em>there is no reliable way to make a model distinguish instructions from data,</em> so defence is architectural, not prompt-based.</span><span class="tref"><a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" target="_blank" rel="noopener noreferrer">The lethal trifecta</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Indirect injection</strong> — the serious one. A malicious instruction hidden in a document your RAG pipeline retrieves, or on a page your agent fetches. Walk through the attack once end to end.</span><span class="tref"><a href="https://arxiv.org/abs/2302.12173" target="_blank" rel="noopener noreferrer">Indirect prompt injection</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>The defences that actually work:</strong> least-privilege tools, confirmation gates on anything destructive or outbound, validating model output before acting on it, and keeping the agent's permissions scoped to the requesting user. Never <code>eval()</code> model output, never interpolate it into SQL or a shell command.</span><span class="tref"><a href="https://arxiv.org/abs/2506.08837" target="_blank" rel="noopener noreferrer">Securing LLM agents</a> <span class="sep">·</span> <a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks" target="_blank" rel="noopener noreferrer">Mitigate jailbreaks</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Data handling.</strong> What leaves your network, what the provider retains, zero-retention and enterprise terms, PII redaction before the call, regional inference. Expect at least one question here from anyone in a regulated industry.</span><span class="tref"><a href="https://developers.openai.com/api/docs/guides/your-data" target="_blank" rel="noopener noreferrer">OpenAI data controls</a> <span class="sep">·</span> <a href="https://presidio.dataprivacystack.org/getting_started/" target="_blank" rel="noopener noreferrer">Presidio PII redaction</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Skim the OWASP Top 10 for LLM Applications.</strong> One sitting. It's the shared vocabulary for this conversation.</span><span class="tref"><a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLMs</a> <span class="sep">·</span> <a href="https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/" target="_blank" rel="noopener noreferrer">Agentic AI threats</a></span></span></label></li>
+  </ul>
+
+  <h4>Observability</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Trace the full chain for one request: prompt, retrieved chunks, every tool call, every model response. When a user says "it gave a wrong answer", the trace is the only way to find out why.</span><span class="tref"><a href="https://langfuse.com/docs/observability/get-started" target="_blank" rel="noopener noreferrer">Langfuse tracing</a> <span class="sep">·</span> <a href="https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/README.md" target="_blank" rel="noopener noreferrer">OTel GenAI conventions</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Dashboard the four numbers: tokens, cost, latency (p50/p95), error rate — sliced by route and model.</span><span class="tref"><a href="https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/README.md" target="_blank" rel="noopener noreferrer">OTel GenAI conventions</a> <span class="sep">·</span> <a href="https://docs.langchain.com/langsmith/cost-tracking" target="_blank" rel="noopener noreferrer">LangSmith cost tracking</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Capture production failures into your eval set automatically. This closes the loop and is a genuinely strong thing to describe.</span><span class="tref"><a href="https://docs.langchain.com/langsmith/evaluation-concepts" target="_blank" rel="noopener noreferrer">LangSmith eval concepts</a> <span class="sep">·</span> <a href="https://hamel.dev/blog/posts/field-guide/" target="_blank" rel="noopener noreferrer">Rapidly improving AI</a></span></span></label></li>
+  </ul>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence" target="_blank" rel="noopener noreferrer">Optimizing for cost and intelligence</a><span class="kind">docs</span></span>
+      <span class="r-why">Ranked levers with measured savings: caching first, then batching, token trimming, then quality tradeoffs</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/api/docs/guides/latency-optimization" target="_blank" rel="noopener noreferrer">Latency optimization</a><span class="kind">docs</span></span>
+      <span class="r-why">Seven ordered principles from the provider; streaming and parallel/speculative execution explained with concrete tactics</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" target="_blank" rel="noopener noreferrer">The lethal trifecta for AI agents: private data, untrusted content, and external communication</a><span class="kind">post</span></span>
+      <span class="r-why">Names the exact three-ingredient condition that makes injection exploitable; explains why 95% guardrails are failure</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks" target="_blank" rel="noopener noreferrer">Mitigate jailbreaks and prompt injections</a><span class="kind">docs</span></span>
+      <span class="r-why">The practical counterweight to the theory: concrete layered mitigations you can implement</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://sre.google/sre-book/monitoring-distributed-systems/" target="_blank" rel="noopener noreferrer">Monitoring Distributed Systems (Google SRE Book, Chapter 6)</a><span class="kind">book</span></span>
+      <span class="r-why">Shows a 100ms average hiding 5-second tails; teaches histogram buckets over raw means</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://arxiv.org/abs/2302.12173" target="_blank" rel="noopener noreferrer">Not what you&#x27;ve signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection</a><span class="kind">paper</span></span>
+      <span class="r-why">The paper that defined and taxonomized indirect injection; real attacks on Bing Chat and code completion</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://arxiv.org/abs/2506.08837" target="_blank" rel="noopener noreferrer">Design Patterns for Securing LLM Agents against Prompt Injections</a><span class="kind">paper</span></span>
+      <span class="r-why">Six named patterns constraining an agent after untrusted input: plan-then-execute, dual LLM, context minimization</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener noreferrer">OWASP Top 10 for LLM Applications 2025</a><span class="kind">spec</span></span>
+      <span class="r-why">The checklist itself, fully readable on-page, no download gate; LLM05 and LLM06 name the defences</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/api/docs/guides/your-data" target="_blank" rel="noopener noreferrer">Data controls in the OpenAI platform</a><span class="kind">docs</span></span>
+      <span class="r-why">Primary terms: 30-day abuse logs, ZDR forcing store=false, ten residency regions, default training opt-out</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://presidio.dataprivacystack.org/getting_started/" target="_blank" rel="noopener noreferrer">Presidio — Getting started</a><span class="kind">tool</span></span>
+      <span class="r-why">Actual Python library for detecting and anonymizing PII before it reaches a model</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://langfuse.com/docs/observability/get-started" target="_blank" rel="noopener noreferrer">Get Started with LLM Tracing</a><span class="kind">tool</span></span>
+      <span class="r-why">Open-source, OTel-native tracing you can pip install and point at your own app today</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/README.md" target="_blank" rel="noopener noreferrer">OpenTelemetry Semantic Conventions for Generative AI (docs index)</a><span class="kind">spec</span></span>
+      <span class="r-why">The vendor-neutral gen_ai.* span, metric and event standard that tracing platforms now target</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/" target="_blank" rel="noopener noreferrer">Agentic AI — Threats and Mitigations</a><span class="kind">spec</span></span>
+      <span class="r-why">OWASP for agents holding tools and credentials, which the chat/RAG Top 10 does not cover</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/api/docs/guides/prompt-caching" target="_blank" rel="noopener noreferrer">Prompt caching (OpenAI API guide)</a><span class="kind">docs</span></span>
+      <span class="r-why">Read beside Anthropic’s: automatic prefix cache vs explicit breakpoints. Semantics do not port</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.vllm.ai/en/latest/design/prefix_caching/" target="_blank" rel="noopener noreferrer">Automatic Prefix Caching: design</a><span class="kind">docs</span></span>
+      <span class="r-why">The mechanism under every provider’s caching feature — hashed KV blocks, explained by implementers</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://docs.vllm.ai/en/latest/serving/openai_compatible_server/" target="_blank" rel="noopener noreferrer">vLLM OpenAI-compatible server</a><span class="kind">docs</span></span>
+      <span class="r-why">What self-hosting an open-weight model actually involves, for the &quot;would you self-host?&quot; question</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 6 ============ -->
+<section id="p6">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">06</span><span>Phase</span><span class="when">Week 11 · Dec 14–20</span></div>
+    <h2>Working with an assistant, under examination</h2>
+  </div>
+  <p class="lede">You already generate code with an assistant. This week is about making that a demonstrable strength instead of an unexamined dependency.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <p>Interview loops in 2026 split roughly three ways, and you should be ready for all three. Some ban assistants outright and watch you write code cold. Some hand you an assistant and watch <em>how</em> you use it — that's the increasingly common one. And some give you AI-generated code and ask you to review it. The third is the hardest and the most revealing.</p>
+
+  <h4>Drills</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Cold reps.</strong> The weekly Friday rep (see cadence). Assistant closed, 45 minutes, something small built from scratch. By Week 11 you'll have ten of them and the "can you still code?" anxiety will be gone — which matters, because that anxiety is visible.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Review drill.</strong> Have the assistant generate a non-trivial function. Before running it, find every bug: the unhandled empty list, the off-by-one, the swallowed exception, the missing <code>await</code>, the plausible-but-wrong API call. Score yourself. Do this weekly — it is the single most transferable skill on this page.</span><span class="tref"><a href="https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/" target="_blank" rel="noopener noreferrer">SWE-bench PRs rejected</a> <span class="sep">·</span> <a href="https://martinfowler.com/articles/exploring-gen-ai/13-role-of-developer-skills.html" target="_blank" rel="noopener noreferrer">Skills in agentic coding</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Defend drill.</strong> Take something the assistant wrote for you last month. Explain every line out loud: why this data structure, what happens on empty input, what breaks at 100× scale. Anything you can't defend, rewrite until you can.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Spec drill.</strong> Practise writing the <em>prompt</em> as a spec — constraints, edge cases, the test you'd want. Good assistant use looks like good delegation, and interviewers evaluating AI-assisted work are grading exactly this.</span><span class="tref"><a href="https://github.github.com/spec-kit/" target="_blank" rel="noopener noreferrer">Spec Kit</a> <span class="sep">·</span> <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener noreferrer">Claude Code best practices</a></span></span></label></li>
+  </ul>
+
+  <h4>The workflow to demonstrate when an assistant is allowed</h4>
+  <p>Narrate it; don't just do it silently.</p>
+  <ol>
+    <li><strong>Restate the problem</strong> and name the edge cases before writing anything. This is scored whether or not AI is involved.</li>
+    <li><strong>Write the test or the signature first</strong> — the contract comes from you.</li>
+    <li><strong>Delegate the implementation</strong> with a specific prompt.</li>
+    <li><strong>Review the output critically, out loud.</strong> "I'd want to check what this does with an empty input" is a sentence that earns points.</li>
+    <li><strong>Run it, then explain it.</strong> Own every line as if you'd typed it.</li>
+  </ol>
+
+  <div class="warn note">
+    <span class="label">The sentence that ends interviews</span>
+    <p>"I'm not sure, the assistant wrote that part." Generated code is yours the moment you submit it. The whole purpose of this week is to never need that sentence.</p>
+  </div>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener noreferrer">Best practices for Claude Code</a><span class="kind">docs</span></span>
+      <span class="r-why">First-party guide with explicit failure-pattern list, plan-mode workflow, and adversarial subagent review step.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/" target="_blank" rel="noopener noreferrer">Many SWE-bench-Passing PRs Would Not Be Merged into Main</a><span class="kind">paper</span></span>
+      <span class="r-why">Half of test-passing AI PRs rejected by real maintainers; names the exact rejection categories.</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://www.canva.dev/blog/engineering/yes-you-can-use-ai-in-our-interviews/" target="_blank" rel="noopener noreferrer">Yes, You Can Use AI in Our Interviews. In fact, we insist</a><span class="kind">post</span></span>
+      <span class="r-why">First-party employer policy: required AI use, and the three things they actually grade.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://martinfowler.com/articles/exploring-gen-ai/13-role-of-developer-skills.html" target="_blank" rel="noopener noreferrer">The role of developer skills in agentic coding</a><span class="kind">post</span></span>
+      <span class="r-why">Sorts agent missteps by impact radius, so you know which defects review must catch.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener noreferrer">Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity</a><span class="kind">paper</span></span>
+      <span class="r-why">Only true RCT here; the 19%-slower versus 20%-faster-feeling gap is the quotable finding.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://spectrum.ieee.org/technical-interview-ai-arms-race" target="_blank" rel="noopener noreferrer">The AI Arms Race in Technical Interviews Is Escalating</a><span class="kind">post</span></span>
+      <span class="r-why">July 2026 reporting naming Meta, Microsoft and Factory across allow, detect and human-centred stances.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://dora.dev/insights/balancing-ai-tensions/" target="_blank" rel="noopener noreferrer">Balancing AI tensions: Moving from AI adoption to effective SDLC use</a><span class="kind">post</span></span>
+      <span class="r-why">DORA&#x27;s throughput-up-instability-up finding, ungated and readable, unlike the email-gated report PDF.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://metr.org/blog/2026-02-24-uplift-update/" target="_blank" rel="noopener noreferrer">We are Changing our Developer Productivity Experiment Design</a><span class="kind">paper</span></span>
+      <span class="r-why">The correction: 2025 slowdown likely didn&#x27;t hold; cite this before an interviewer does.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.github.com/spec-kit/" target="_blank" rel="noopener noreferrer">Spec Kit</a><span class="kind">docs</span></span>
+      <span class="r-why">Official spec-driven harness you can install and run; Specify-Plan-Tasks-Implement in one sitting.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://martinfowler.com/articles/exploring-gen-ai/tdd-in-the-agent-loop.html" target="_blank" rel="noopener noreferrer">TDD inside the agent loop - theater or actual value?</a><span class="kind">post</span></span>
+      <span class="r-why">Measured experiment finding TDD gave agents no quality edge: a defensible contrarian interview answer.</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://agents.md/" target="_blank" rel="noopener noreferrer">AGENTS.md</a><span class="kind">spec</span></span>
+      <span class="r-why">Vendor-neutral Linux Foundation format readable in ten minutes; works across every assistant you&#x27;ll meet.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ PHASE 7 ============ -->
+<section id="p7">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">07</span><span>Phase</span><span class="when">Week 12 · Dec 21–27</span></div>
+    <h2>Interview consolidation</h2>
+  </div>
+  <p class="lede">No new material. Turning twelve weeks of building into answers you can give under pressure.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <h4>AI system design — a scaffold that fits almost any prompt</h4>
+  <p>"Design a support assistant over our help centre." "Design a code-review bot." "Design document Q&amp;A over 10M PDFs." Same six moves every time:</p>
+  <ol>
+    <li><strong>Clarify and scope.</strong> Who uses it, what volume, what's the cost of a wrong answer, what latency is acceptable? <em>Ask about the cost of being wrong — most candidates don't, and it determines the entire architecture.</em></li>
+    <li><strong>Do the arithmetic.</strong> Requests/day × tokens/request × rate = daily spend. Out loud. This is the move that separates the top of the stack from the middle.</li>
+    <li><strong>Pick the simplest architecture that could work.</strong> Single call → fixed pipeline → retrieval → agent, in that order, and justify each escalation. Start simpler than feels impressive.</li>
+    <li><strong>State the eval plan</strong> before the implementation details. "Here's how I'd know it works" is a differentiator, and almost nobody volunteers it unprompted.</li>
+    <li><strong>Failure and abuse.</strong> What happens when the model is wrong, the API is down, a user is hostile, a retrieved document is poisoned?</li>
+    <li><strong>Rollout.</strong> Shadow mode → internal users → % rollout, with the production signal you'd watch at each gate.</li>
+  </ol>
+
+  <h4>The question bank — be able to answer all of these in under two minutes each</h4>
+  <ol class="qlist">
+    <li>Why do models hallucinate, and what actually reduces it? <span class="why">Wanted: grounding, abstention instructions, citations, constrained output — and the admission that it cannot be eliminated.</span></li>
+    <li>Walk me through a RAG pipeline you've built. Where did it break? <span class="why">Your Phase 2 project. The breakage is the interesting half — lead with it.</span></li>
+    <li>How do you know your prompt change made things better? <span class="why">Phase 4. If you have a real before/after table, this question is a gift.</span></li>
+    <li>When would you <em>not</em> use an agent? <span class="why">The four-question gate. Restraint scores.</span></li>
+    <li>Our AI bill tripled. What do you look at? <span class="why">The lever ordering from Phase 5, free wins first.</span></li>
+    <li>How do you stop prompt injection? <span class="why">Architectural defence, least privilege. Say plainly that prompt-level filtering is not a solution.</span></li>
+    <li>Fine-tuning vs RAG vs prompting — pick one for this problem. <span class="why">Prompting for behaviour, RAG for knowledge, fine-tuning for format/style/latency at scale. Most problems are not fine-tuning problems.</span></li>
+    <li>How do you pick a model? <span class="why">Eval on your own task, then cost and latency. Public benchmarks are a shortlist, not a decision.</span></li>
+    <li>This feature needs a sub-second response. How? <span class="why">Streaming, smaller model, caching, precompute, cut output tokens, parallelise.</span></li>
+    <li>How would you handle 10M documents instead of 10k? <span class="why">Ingestion pipeline, incremental re-indexing, ANN index choice, metadata pre-filtering, cost of re-embedding.</span></li>
+    <li>What's the most interesting thing happening in AI right now? <span class="why">Your Track B log. Three specific, dated, opinionated answers. Never "AGI is coming."</span></li>
+    <li>Where have you seen AI applied badly? <span class="why">Tests judgment and honesty. Have a real example and be specific about why.</span></li>
+  </ol>
+
+  <h4>Final week checklist</h4>
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Deploy the project.</strong> A live URL beats a repo. A repo beats a description.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text"><strong>Publish the eval report.</strong> One page: what it does, the eval set, before/after numbers, cost per request, what still fails. This is your strongest artefact — treat the README as an interview answer.</span><span class="tref"><a href="https://github.com/landedjobs/ai-engineer-portfolio-projects" target="_blank" rel="noopener noreferrer">Portfolio project criteria</a> <span class="sep">·</span> <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Demystifying evals</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Write a 90-second spoken walkthrough of the project. Problem → architecture → one hard tradeoff → how you measured it. Time yourself.</span><span class="tref"><a href="https://github.com/alexeygrigorev/ai-engineering-field-guide/blob/main/interview/03-get-hired.md" target="_blank" rel="noopener noreferrer">Get hired: AI engineer</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Three mock design rounds, out loud, with a whiteboard or a shared doc. Silent practice builds a skill the interview doesn't test.</span><span class="tref"><a href="https://www.aced.io/practice" target="_blank" rel="noopener noreferrer">Aced peer mocks</a> <span class="sep">·</span> <a href="https://interviewing.io/mocks" target="_blank" rel="noopener noreferrer">interviewing.io replays</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Rehearse the failure stories. Phase 3's broken agent, Phase 2's worst retrieval miss, Phase 4's change that made things worse. Interviewers trust specific failures more than polished successes.</span><span class="tref"><a href="https://github.com/aishwaryanr/awesome-generative-ai-guide/tree/main/interview_prep/roles/ai-engineer" target="_blank" rel="noopener noreferrer">AI engineer interview prep</a></span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Prepare your three Track B talking points, each with a date, a source, and an opinion.</span><span class="tref"><a href="https://simonwillison.net/tags/llms/" target="_blank" rel="noopener noreferrer">Simon Willison on LLMs</a> <span class="sep">·</span> <a href="https://importai.substack.com/" target="_blank" rel="noopener noreferrer">Import AI</a></span></span></label></li>
+  </ul>
+
+  <h4>Read</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://github.com/aishwaryanr/awesome-generative-ai-guide/tree/main/interview_prep/roles/ai-engineer" target="_blank" rel="noopener noreferrer">AI Engineer: Interview Prep (awesome-generative-ai-guide)</a><span class="kind">guide</span></span>
+      <span class="r-why">60+ questions with model answers, rounds.md map, 3-week prep plan; 29.7k-star repo</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://github.com/aishwaryanr/awesome-generative-ai-guide/tree/main/interview_prep/system-design" target="_blank" rel="noopener noreferrer">AI System Design Case Studies (awesome-generative-ai-guide)</a><span class="kind">guide</span></span>
+      <span class="r-why">Ten worked AI design interviews on one 5-layer spine, with the follow-ups interviewers ask</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://eugeneyan.com/writing/llm-patterns/" target="_blank" rel="noopener noreferrer">Patterns for Building LLM-based Systems &amp; Products</a><span class="kind">guide</span></span>
+      <span class="r-why">One end-to-end map of the practical patterns — the best single revision read before a design round</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/donnemartin/system-design-primer" target="_blank" rel="noopener noreferrer">The System Design Primer</a><span class="kind">guide</span></span>
+      <span class="r-why">373k stars; eight solved designs, Anki decks, timed study plans — the canonical free refresher</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/alexeygrigorev/ai-engineering-field-guide/blob/main/interview/03-get-hired.md" target="_blank" rel="noopener noreferrer">Get Hired as an AI Engineer (AI Engineering Field Guide, interview/03-get-hired.md)</a><span class="kind">guide</span></span>
+      <span class="r-why">Grigorev&#x27;s hiring-side guide: resume framing, portfolio strategy, 60-second project pitch; 2026 data, 5.8k stars</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://interviewing.io/mocks" target="_blank" rel="noopener noreferrer">Anonymous mock technical interview practice (interviewing.io replay library)</a><span class="kind">tool</span></span>
+      <span class="r-why">400+ real recorded interviews including ML system design — watch how strong candidates actually talk</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.industrialempathy.com/posts/design-docs-at-google/" target="_blank" rel="noopener noreferrer">Design Docs at Google</a><span class="kind">post</span></span>
+      <span class="r-why">Ubl&#x27;s goals, non-goals, alternatives-considered, trade-offs skeleton is literally the structure of a strong answer</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://applied-llms.org/" target="_blank" rel="noopener noreferrer">What We&#x27;ve Learned From A Year of Building with LLMs</a><span class="kind">guide</span></span>
+      <span class="r-why">Six named practitioners on LLM product trade-offs; dense and quotable, though written June 2024</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://github.com/landedjobs/ai-engineer-portfolio-projects" target="_blank" rel="noopener noreferrer">AI Engineer Portfolio Projects (landedjobs)</a><span class="kind">guide</span></span>
+      <span class="r-why">Concrete 90-second-scan criteria, named red flags, per-project checklist; use as checklist, not canon (lead-gen)</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.aced.io/practice" target="_blank" rel="noopener noreferrer">Mock Interviews: Improve Your Skills By Practicing with Peers and AI - Aced (formerly Exponent)</a><span class="kind">tool</span></span>
+      <span class="r-why">Pramp&#x27;s successor: free monthly credits for live peer system-design and ML mocks</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ TRACK B ============ -->
+<section id="track-b">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">B</span><span>Parallel track</span><span class="when">Weeks 1–12 · Sundays</span></div>
+    <h2>Keeping a grip on the industry</h2>
+  </div>
+  <p class="lede">45 minutes a week, every week. The goal is not to know everything — it is to have a map, and to be able to place anything new on it in ten seconds.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <h4>The Sunday ritual</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th class="mono" style="width:14%">Time</th><th style="width:26%">Do</th><th>Why this and not something else</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">20 min</td><td><strong>Primary sources only</strong></td><td>Provider changelogs, release notes, model cards, engineering blogs. Skip the commentary layer — it's slower, lossier and consistently overstates. A model card tells you what actually changed; a thread tells you how someone felt about it.</td></tr>
+        <tr><td class="mono">15 min</td><td><strong>One technical piece</strong></td><td>A paper or a serious engineering post. Read abstract → method → <em>limitations</em>, and stop. The limitations section is where the real information is and it's the part nobody reads.</td></tr>
+        <tr><td class="mono">10 min</td><td><strong>Write three sentences</strong></td><td>What changed · who it affects · what you'd do differently in your own project. This log is the deliverable. Twelve weeks of it is a genuine point of view, and it is what you'll actually say out loud in an interview.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn note">
+    <span class="label">The discipline that makes this work</span>
+    <p>Hard cap at 45 minutes. AI news is engineered to be infinite and consuming it feels productive in exactly the way that building isn't. If you overrun, you're taking the time from Track A, which is where the interview is actually won.</p>
+  </div>
+
+  <h4>The map — what to be able to place, not memorise</h4>
+  <p>Specific numbers here go stale in weeks. The <em>structure</em> doesn't. Learn the layers; look up the current occupants when you need them.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:24%">Layer</th><th>What to know</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Frontier labs</strong></td><td>The main closed-weight families (Anthropic's Claude, OpenAI's GPT, Google's Gemini) and the main open-weight ones (Meta's Llama, Mistral, and the strong Chinese labs — DeepSeek, Qwen). Know roughly who leads at what, and hold that opinion loosely: the ordering changes every few months.</td></tr>
+        <tr><td><strong>Open vs closed</strong></td><td>The real tradeoff: control, data residency and per-token cost against peak capability and zero ops. "When would you self-host an open model?" is a common question — the honest answer is usually data-residency requirements or very high steady volume, not cost at small scale.</td></tr>
+        <tr><td><strong>Where inference runs</strong></td><td>First-party APIs; the cloud resellers (AWS Bedrock, Google Vertex, Microsoft Foundry) where your company's existing contract usually lives; inference specialists competing on speed and price; and local runtimes (Ollama, llama.cpp) for private or offline work.</td></tr>
+        <tr><td><strong>The tooling layer</strong></td><td>Orchestration frameworks, vector databases, eval and observability platforms, and MCP as the emerging interop standard. Know what category each thing is in. You do not need to have used them all — you need to not be surprised by a name.</td></tr>
+        <tr><td><strong>The economics</strong></td><td>Training is enormous capex; inference is the recurring opex you actually manage. Price per token has fallen steadily and keeps falling; capability per dollar is the metric that matters. This is why "we'll just use the biggest model" is a losing position and why model routing exists.</td></tr>
+        <tr><td><strong>The shape of progress</strong></td><td>Longer contexts, reasoning/thinking modes with tunable depth, native tool use, multimodality, and agentic long-horizon work. Each of these changed what's buildable — be able to say what each one unlocked in product terms.</td></tr>
+        <tr><td><strong>Policy and governance</strong></td><td>The EU AI Act, data-retention and zero-retention terms, model cards and safety evaluations, copyright and training-data disputes. One paragraph each is enough. It matters more the more regulated the employer.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Sources — the weekly rotation</h4>
+  <ul class="reads">
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://platform.claude.com/docs/en/release-notes/overview" target="_blank" rel="noopener noreferrer">Claude Platform release notes</a><span class="kind">docs</span></span>
+      <span class="r-why">Anthropic&#x27;s own dated log of API, SDK and Console changes, including deprecations</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://simonwillison.net/tags/llms/" target="_blank" rel="noopener noreferrer">Simon Willison on llms</a><span class="kind">post</span></span>
+      <span class="r-why">Daily independent field notes; runs the models himself, cites primaries, publicly revises claims</span>
+    </li>
+    <li class="core">
+      <span class="r-top"><a class="r-title" href="https://importai.substack.com/" target="_blank" rel="noopener noreferrer">Import AI</a><span class="kind">newsletter</span></span>
+      <span class="r-why">Jack Clark&#x27;s weekly filter: few papers, why each matters, policy context included</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener noreferrer">LLM Leaderboard - Comparison of AI models from OpenAI, Anthropic, Google, SpaceXAI &amp; others</a><span class="kind">tool</span></span>
+      <span class="r-why">Runs its own price, latency and quality measurements across 250+ models and hosts</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener noreferrer">Changelog (OpenAI API)</a><span class="kind">docs</span></span>
+      <span class="r-why">Official dated feed of model launches, deprecations and API changes back to 2023</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener noreferrer">Release notes (Gemini API)</a><span class="kind">docs</span></span>
+      <span class="r-why">Google&#x27;s authoritative Gemini log with the model retirement dates you plan migrations around</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.anthropic.com/engineering" target="_blank" rel="noopener noreferrer">Engineering at Anthropic</a><span class="kind">post</span></span>
+      <span class="r-why">Frontier lab publishing real agent-harness, eval and context-engineering detail, not launch marketing</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://developers.openai.com/blog" target="_blank" rel="noopener noreferrer">Blog (OpenAI for Developers)</a><span class="kind">post</span></span>
+      <span class="r-why">The other big lab&#x27;s builder-facing posts: long-running agents, skills evals, MCP networking</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://arena.ai/leaderboard" target="_blank" rel="noopener noreferrer">Arena Leaderboard | Compare &amp; Benchmark the Best Frontier AI Models</a><span class="kind">tool</span></span>
+      <span class="r-why">The actual human-preference board — lmarena.ai redirects here; 359M+ real user sessions</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://arxiv.org/abs/2504.20879" target="_blank" rel="noopener noreferrer">The Leaderboard Illusion</a><span class="kind">paper</span></span>
+      <span class="r-why">Quantifies private retesting and sampling bias; the citation for why Elo misleads</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://huggingface.co/models" target="_blank" rel="noopener noreferrer">Models – Hugging Face</a><span class="kind">tool</span></span>
+      <span class="r-why">Three million open-weight repos with licence filters and trending sort; the front door</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://epoch.ai/gradient-updates/can-ai-companies-become-profitable" target="_blank" rel="noopener noreferrer">Can AI companies become profitable? Lessons from GPT-5&#x27;s economics</a><span class="kind">post</span></span>
+      <span class="r-why">Line-item R&amp;D-versus-inference margins for one real model generation; methodology and numbers shown</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://epoch.ai/publications/the-plunging-price-of-thought" target="_blank" rel="noopener noreferrer">The plunging price of thought</a><span class="kind">paper</span></span>
+      <span class="r-why">September 2026 Pareto-frontier study: inference 47% cheaper per quarter, code and data published</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://ai-act-service-desk.ec.europa.eu/en/ai-act-explorer" target="_blank" rel="noopener noreferrer">AI Act Explorer | AI Act Service Desk</a><span class="kind">spec</span></span>
+      <span class="r-why">Commission&#x27;s own consolidated text, current through the 2026 Digital Omnibus amendment</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://artificialintelligenceact.eu/high-level-summary/" target="_blank" rel="noopener noreferrer">High-level summary of the AI Act</a><span class="kind">guide</span></span>
+      <span class="r-why">Plain-language risk tiers, GPAI duties and dates; updated August 2026, explicitly never paywalled</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://www.interconnects.ai/" target="_blank" rel="noopener noreferrer">Interconnects</a><span class="kind">newsletter</span></span>
+      <span class="r-why">Nathan Lambert on open models and post-training; technical, takes named positions, no hype</span>
+    </li>
+    <li>
+      <span class="r-top"><a class="r-title" href="https://huggingface.co/papers" target="_blank" rel="noopener noreferrer">Daily Papers - Hugging Face</a><span class="kind">tool</span></span>
+      <span class="r-why">Community-upvoted daily shortlist; skim ten titles instead of the arXiv firehose</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ============ CADENCE ============ -->
+<section id="cadence">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">§</span><span>Operating rhythm</span></div>
+    <h2>Weekly cadence</h2>
+  </div>
+  <p class="lede">About one hour a day, six days. Both tracks fit inside it.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:15%">Day</th><th style="width:30%">Focus</th><th>Shape</th></tr></thead>
+      <tbody>
+        <tr><td class="w">Mon–Wed</td><td><strong>New material</strong></td><td>20 min reading the concept, 40 min writing code against it. Never read for a full hour — a concept you haven't typed is a concept you don't have.</td></tr>
+        <tr><td class="w">Thu</td><td><strong>Extend the project</strong></td><td>Fold the week's new idea into the one running project. No new repos; one system that grows for twelve weeks is worth far more than eight demos.</td></tr>
+        <tr><td class="w">Fri</td><td><strong>Cold rep + review drill</strong></td><td>45 min building something small with the assistant closed. Then 15 min generating a function and finding its bugs before running it. Both halves matter.</td></tr>
+        <tr><td class="w">Sat</td><td><strong>Measure</strong></td><td>Run the eval (from Week 8 on). Record score, cost, p95. Write one line on what changed and why. Before Week 8, use Saturday to catch up or to deepen the week's weakest topic.</td></tr>
+        <tr><td class="w">Sun</td><td><strong>Track B</strong></td><td>The 45-minute ritual, hard-capped, ending in three written sentences.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Four rules that do most of the work</h4>
+  <ol>
+    <li><strong>One project, twelve weeks.</strong> Everything compounds into the same system. Eight tutorials teach eight beginnings; one system that survives a retrieval rewrite, an agent loop and an eval suite teaches what the beginnings never do.</li>
+    <li><strong>Build it raw before you adopt an abstraction.</strong> Hand-rolled agent loop before any framework, plain vector search before a vector DB. You can adopt the abstraction afterwards in an afternoon, and you'll choose it on merit.</li>
+    <li><strong>Every claim gets a number.</strong> "It got better" is not a result. "Recall@5 went 0.71 → 0.84, cost per request down 18%" is. Train this now, because it's how you'll be expected to speak in the interview.</li>
+    <li><strong>Write down every failure.</strong> A one-line log of what broke and why. By Week 12 it's your answer bank for the behavioural half of the loop, which you would otherwise have to improvise.</li>
+  </ol>
+</section>
+
+<!-- ============ TRAPS ============ -->
+<section id="traps">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">§</span><span>Failure modes</span></div>
+    <h2>Traps that will cost weeks</h2>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:34%">Trap</th><th>Why it's expensive</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Framework before fundamentals</strong></td><td>Learn an orchestration library before you've hand-written a tool loop and you inherit someone else's abstractions with no model of what's underneath. Debugging becomes archaeology, and an interviewer finds the gap in two questions.</td></tr>
+        <tr><td><strong>Collecting demos</strong></td><td>Eight half-finished projects demonstrate eight first days. One system carried through retrieval, agents, evals and deployment demonstrates engineering.</td></tr>
+        <tr><td><strong>Reading as a substitute for building</strong></td><td>Consuming AI content produces fluent-sounding vocabulary with no judgment underneath, and interviewers are now well calibrated to detect exactly that. It's 15% of this plan for a reason.</td></tr>
+        <tr><td><strong>Treating prompting as the skill</strong></td><td>It's real, it's small, and it decays fastest. Techniques that mattered two model generations ago are now noise. Architecture, evals and cost reasoning don't decay.</td></tr>
+        <tr><td><strong>Reaching for an agent</strong></td><td>The most common senior-level red flag in the field. A loop where a single structured call would do means more cost, more latency and more failure modes. Restraint reads as experience.</td></tr>
+        <tr><td><strong>Skipping evals</strong></td><td>Phase 4 is the differentiator and it's also the most skippable-feeling phase because nothing visible gets built. Skip it and you'll be one of the many candidates who can describe a system but not verify one.</td></tr>
+        <tr><td><strong>Shipping without numbers</strong></td><td>"It works well" is unfalsifiable and everyone says it. A quality score, a cost per request and a p95 are what make a project credible in four seconds.</td></tr>
+        <tr><td><strong>Memorising the news</strong></td><td>Parameter counts and benchmark scores are stale in weeks and no one is asking. A map you can place new things on is durable; a list you memorised isn't.</td></tr>
+        <tr><td><strong>Not owning generated code</strong></td><td>Submitting code you can't defend line by line is the fastest way to lose a loop you were otherwise passing. Phase 6 exists entirely for this.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ CAPABILITIES ============ -->
+<section id="capabilities">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">§</span><span>Exit criteria</span></div>
+    <h2>What you can do by Week 12</h2>
+  </div>
+  <p class="lede">Not topics covered — things you can do on demand, out loud, without notes. This is the real definition of done.</p>
+
+  <div class="meter" data-meter><div class="meter-track"><div class="meter-fill"></div></div><span class="meter-label">0/0</span></div>
+
+  <ul class="tasks">
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Estimate the monthly cost of a proposed AI feature on a whiteboard, in under two minutes.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Decide whether a given problem needs an LLM at all — and say so when it doesn't.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Design a retrieval pipeline and name its five most likely failure modes unprompted.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Write an agent loop from scratch, including its stop conditions, in under an hour.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Explain why you would <em>not</em> build an agent for a specific problem, using the four-question gate.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Build a 40-case eval set and defend why those are the right cases.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Produce a before/after table showing a change improved quality without wrecking cost.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Walk an interviewer through a prompt injection attack and a layered defence against it.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Cut an AI bill by half and say, in order, which levers you'd pull first.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Review assistant-generated code and find the bug before running it.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Defend every line of code you submit, including the lines you didn't type.</span></span></label></li>
+    <li><label class="task"><input type="checkbox"><span class="task-body"><span class="task-text">Hold a ten-minute conversation about where the industry is going with three specific, dated, opinionated examples.</span></span></label></li>
+  </ul>
+</section>
+
+<!-- ============ PROGRESS ============ -->
+<section id="progress">
+  <div class="sec-head">
+    <div class="sec-kicker"><span class="num">§</span><span>Tracking</span></div>
+    <h2>Progress</h2>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:8%" class="mono">#</th><th style="width:30%">Phase</th><th style="width:12%" class="mono">Week</th><th style="width:22%" class="mono">Dates</th><th>Done</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">00</td><td>The floor</td><td class="mono">1</td><td class="mono">Oct 5–11</td><td data-progress-for="p0" class="mono">—</td></tr>
+        <tr><td class="mono">01</td><td>The API surface</td><td class="mono">2–3</td><td class="mono">Oct 12–25</td><td data-progress-for="p1" class="mono">—</td></tr>
+        <tr><td class="mono">02</td><td>Retrieval</td><td class="mono">4–5</td><td class="mono">Oct 26 – Nov 8</td><td data-progress-for="p2" class="mono">—</td></tr>
+        <tr><td class="mono">03</td><td>Agents and tool use</td><td class="mono">6–7</td><td class="mono">Nov 9–22</td><td data-progress-for="p3" class="mono">—</td></tr>
+        <tr><td class="mono">04</td><td>Evals</td><td class="mono">8–9</td><td class="mono">Nov 23 – Dec 6</td><td data-progress-for="p4" class="mono">—</td></tr>
+        <tr><td class="mono">05</td><td>Production</td><td class="mono">10</td><td class="mono">Dec 7–13</td><td data-progress-for="p5" class="mono">—</td></tr>
+        <tr><td class="mono">06</td><td>Assistant under examination</td><td class="mono">11</td><td class="mono">Dec 14–20</td><td data-progress-for="p6" class="mono">—</td></tr>
+        <tr><td class="mono">07</td><td>Interview consolidation</td><td class="mono">12</td><td class="mono">Dec 21–27</td><td data-progress-for="p7" class="mono">—</td></tr>
+        <tr><td class="mono">B</td><td>Industry track</td><td class="mono">1–12</td><td class="mono">Sundays</td><td data-progress-for="track-b" class="mono">—</td></tr>
+        <tr><td class="mono">✓</td><td>Exit criteria</td><td class="mono">12</td><td class="mono">Dec 27</td><td data-progress-for="capabilities" class="mono">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="footnote">Checkbox state is saved in this browser only, and some browsers block storage for files opened directly from disk — if ticks don't persist, that's why, and nothing else is affected.</p>
+
+  <h4>Shifting the calendar</h4>
+  <p>Dates assume a Mon 5 Oct 2026 start at roughly an hour a day. If you have more time, compress Phases 0–1 — they're the most front-loadable. If you have less, hold Phases 2 and 4 at full length and compress 5 and 6; retrieval and evals are where the interview value is concentrated. Never compress Phase 4 to buy time for Phase 7.</p>
+</section>
+
+<!-- ============ CLOSER ============ -->
+<section class="closer">
+  <div class="sec-kicker"><span class="num">→</span><span>Start here</span></div>
+  <p class="nextline">Today: get an API key, make one <code>curl</code> call, and read the raw JSON that comes back. Then write the cost-printing script from Phase 0 — everything else in these twelve weeks hangs off being able to see what a call costs.</p>
+</section>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var KEY_PREFIX = "ailp:";
+  var store = {
+    get: function (k) { try { return window.localStorage.getItem(KEY_PREFIX + k); } catch (e) { return null; } },
+    set: function (k, v) { try { window.localStorage.setItem(KEY_PREFIX + k, v); } catch (e) { /* storage unavailable */ } }
+  };
+
+  // Stable key derived from the task's own text, so reordering sections
+  // doesn't shuffle saved state.
+  function keyFor(el) {
+    var text = (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 120);
+    var h = 5381;
+    for (var i = 0; i < text.length; i++) { h = ((h << 5) + h + text.charCodeAt(i)) | 0; }
+    return (h >>> 0).toString(36);
+  }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".task input[type=checkbox]"));
+
+  boxes.forEach(function (box) {
+    var label = box.closest(".task");
+    var key = keyFor(label);
+    box.dataset.key = key;
+    if (store.get(key) === "1") { box.checked = true; }
+    box.addEventListener("change", function () {
+      store.set(key, box.checked ? "1" : "0");
+      refresh();
+    });
+  });
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll("section"));
+  var globalCounter = document.getElementById("global-counter");
+
+  function refresh() {
+    var doneAll = 0, totalAll = 0;
+
+    sections.forEach(function (sec) {
+      var secBoxes = sec.querySelectorAll(".task input[type=checkbox]");
+      if (!secBoxes.length) { return; }
+      var done = 0;
+      Array.prototype.forEach.call(secBoxes, function (b) { if (b.checked) { done++; } });
+      var total = secBoxes.length;
+      doneAll += done; totalAll += total;
+
+      var meter = sec.querySelector("[data-meter]");
+      if (meter) {
+        var pct = total ? Math.round((done / total) * 100) : 0;
+        meter.querySelector(".meter-fill").style.width = pct + "%";
+        meter.querySelector(".meter-label").textContent = done + "/" + total;
+      }
+
+      var cell = document.querySelector('[data-progress-for="' + sec.id + '"]');
+      if (cell) {
+        cell.textContent = done === total ? "✓ " + done + "/" + total : done + "/" + total;
+        cell.style.color = done === total ? "var(--accent)" : "";
+      }
+    });
+
+    if (globalCounter) {
+      globalCounter.innerHTML = "<b>" + doneAll + "</b>/" + totalAll;
+    }
+  }
+
+  refresh();
+})();
+</script>
+
+</body>
+</html>
